@@ -5,6 +5,9 @@ export var current_swing = 0
 export var should_turn = true
 var can_attack = true
 export var emit_particles = true
+var shoot_cooldown = false
+
+var sword_projectile = load("res://Prefabs/Projectiles/SwordProjectile/SwordProjectile.tscn")
 
 
 func _ready():
@@ -23,6 +26,14 @@ func _physics_process(delta):
 func _process(delta):
 	if Input.is_action_just_pressed("attack"):
 		swing_attack()
+	if Values.bow:
+		if Input.is_action_just_pressed("shoot") && !shoot_cooldown:
+			shoot_cooldown = true
+			var sword_projectile_inst = sword_projectile.instance()
+			sword_projectile_inst.position = global_position
+			get_parent().get_parent().add_child(sword_projectile_inst)
+			yield(get_tree().create_timer(0.3, false), "timeout")
+			shoot_cooldown = false
 
 
 func swing_attack():

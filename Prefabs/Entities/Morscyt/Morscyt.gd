@@ -45,9 +45,11 @@ func attack_combo():
 	if !is_dead:
 		is_attacking = true
 		regular_moving = false
-		dash = (Values.player.position - position) / 80
+		dash.y = ((Values.player.position.y - 80) - position.y) / 80
 		$AnimationPlayer.play("Attack1")
-		yield(get_tree().create_timer(1.81, false), "timeout")
+		yield(get_tree().create_timer(0.6, false), "timeout")
+		dash.y = ((Values.player.position.y - 32) - position.y) / 64
+		yield(get_tree().create_timer(1.21, false), "timeout")
 		is_attacking = false
 		regular_moving = true
 		dash = Vector2(0, 0)

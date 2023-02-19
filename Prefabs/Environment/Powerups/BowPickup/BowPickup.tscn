@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Textures/Entities/Sword/BowPowerup.png" type="Texture" id=1]
+[ext_resource path="res://Prefabs/Environment/Powerups/BowPickup/BowPickup.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Collect"
@@ -58,14 +59,26 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -2 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 6.08276
 
 [node name="BowPickup" type="Area2D"]
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 rotation = 6.28319
 texture = ExtResource( 1 )
 
@@ -76,3 +89,5 @@ anims/Float = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_BowPickup_body_entered"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/2KyrieEleison.mp3-fd86cdcd0baa24eecb7cdd96fd22ba34.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/2KyrieEleison.mp3"
+dest_files=[ "res://.import/2KyrieEleison.mp3-fd86cdcd0baa24eecb7cdd96fd22ba34.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

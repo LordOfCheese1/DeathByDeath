@@ -1,0 +1,338 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Textures/Entities/Morscyt/Scythe.png" type="Texture" id=1]
+[ext_resource path="res://Prefabs/Entities/Morscyt/Morscyt.gd" type="Script" id=2]
+[ext_resource path="res://Components/Visuals/ParticleSpawner/ParticleSpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Components/Managers/HealthManager/HealthManager.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/Collision/Hitbox/Hitbox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/Collision/Attackbox/Attackbox.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 2.5, 48 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 21.2538, 3.80705 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Attack1"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Scythe:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 0.9, 1.3, 1.5, 1.8 ),
+"transitions": PoolRealArray( 0.3, 0.3, 0.25, 0.3, 0.2, 1 ),
+"update": 0,
+"values": [ 112.0, 90.0, 300.0, 112.0, 350.0, 112.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visuals/Scythe:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.690196, 0.188235, 0.360784, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Attackbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.7, 0.9, 1, 1.2, 1.4, 1.5, 1.6, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false, true ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Attack2"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Scythe:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.2, 1 ),
+"update": 0,
+"values": [ 300.0, 110.0 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Attack3"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Scythe:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Awaken"
+length = 1.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Scythe:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.15, 1.2, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 0.3, 1 ),
+"update": 0,
+"values": [ -45.0, -45.0, -48.0, -250.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visuals/Scythe:position")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "Death"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Scythe:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 1.1 ),
+"transitions": PoolRealArray( 1, 2, 1 ),
+"update": 0,
+"values": [ Vector2( 1.3, 1.3 ), Vector2( 1, 1 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visuals/Scythe:rotation_degrees")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 100.0, 120.0, 112.0, 122.323, 110.14, 128.234, 141.432, 125.826, 99.0525, 107.987, 129.436 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Visuals/Scythe:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 4, 4, 4, 4 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -6 ), Vector2( 0, 0 ), Vector2( 0, -6 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Visuals/Scythe:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Attackbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "EndAttack3"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Scythe:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ 0.0, 112.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Scythe:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.4, 1 ),
+"update": 0,
+"values": [ 95.0, 112.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visuals/Scythe:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Scythe:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -45.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Attackbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Visuals/Scythe:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "StartAttack3"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Scythe:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 2.5, 1 ),
+"update": 0,
+"values": [ 110.0, 360.0 ]
+}
+
+[sub_resource type="CircleShape2D" id=13]
+radius = 41.0122
+
+[node name="Morscyt" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Scythe" type="Sprite" parent="Visuals"]
+rotation = -0.785398
+texture = ExtResource( 1 )
+offset = Vector2( -20, 10 )
+
+[node name="ParticleSpawner" parent="Visuals/Scythe" instance=ExtResource( 3 )]
+position = Vector2( 4, 54 )
+rotation = 0.785398
+place_on_z = -1
+pause_on_start = true
+wait_time = 0.04
+particle_to_spawn = "res://Prefabs/Particles/SwordTrail/SwordTrail.tscn"
+
+[node name="Hitbox" parent="Visuals/Scythe" instance=ExtResource( 5 )]
+health_manager = NodePath("../../../HealthManager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals/Scythe/Hitbox"]
+position = Vector2( -0.346609, 9.84308 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Visuals/Scythe/Hitbox"]
+position = Vector2( -17.7539, 53.5937 )
+shape = SubResource( 10 )
+
+[node name="BloodSpawner" type="Node2D" parent="Visuals/Scythe"]
+position = Vector2( -20, 52 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Attack1 = SubResource( 2 )
+anims/Attack2 = SubResource( 5 )
+anims/Attack3 = SubResource( 11 )
+anims/Awaken = SubResource( 7 )
+anims/Death = SubResource( 14 )
+anims/EndAttack3 = SubResource( 12 )
+anims/Hit = SubResource( 8 )
+anims/RESET = SubResource( 3 )
+anims/StartAttack3 = SubResource( 6 )
+
+[node name="HealthManager" parent="." instance=ExtResource( 4 )]
+max_health = 44
+
+[node name="Attackbox" parent="." instance=ExtResource( 6 )]
+ignore = NodePath("../Visuals/Scythe/Hitbox")
+damage = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attackbox"]
+shape = SubResource( 13 )
+disabled = true
+
+[connection signal="on_hit" from="Visuals/Scythe/Hitbox" to="." method="_on_Hitbox_on_hit"]
+[connection signal="health_depleted" from="HealthManager" to="." method="_on_HealthManager_health_depleted"]

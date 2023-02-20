@@ -29,8 +29,8 @@ func _process(delta):
 	if Values.bow:
 		if Input.is_action_just_pressed("shoot") && !shoot_cooldown:
 			if get_parent().is_in_group("player"):
-				get_parent().velocity.y = -$Pivot.transform.x.y * 50
-				get_parent().velocity.x = stepify(-$Pivot.transform.x.x * 80, 12)
+				get_parent().velocity.y += -$Pivot.transform.x.y * 50
+				get_parent().velocity.x += stepify(-$Pivot.transform.x.x * 80, 12)
 			shoot_cooldown = true
 			var sword_projectile_inst = sword_projectile.instance()
 			sword_projectile_inst.position = global_position

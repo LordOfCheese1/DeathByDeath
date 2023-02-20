@@ -50,6 +50,7 @@ tracks/0/keys = {
 }
 
 [node name="Letter" type="Sprite"]
+pause_mode = 2
 texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

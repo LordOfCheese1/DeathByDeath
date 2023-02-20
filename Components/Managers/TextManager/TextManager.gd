@@ -22,4 +22,4 @@ func change_text(text: String, time : float):
 		else:
 			y += 1
 			pos = 0
-		yield(get_tree().create_timer(time, false), "timeout")
+		yield(get_tree().create_timer(time, true), "timeout")

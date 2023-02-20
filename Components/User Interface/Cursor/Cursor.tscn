@@ -33,7 +33,9 @@ tracks/1/keys = {
 }
 
 [node name="Cursor" type="Sprite"]
+pause_mode = 2
 rotation = -1.0472
+z_index = 6
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 

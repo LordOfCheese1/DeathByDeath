@@ -28,6 +28,7 @@ extents = Vector2( 1, 16 )
 
 [node name="BowPickup" parent="Environment" instance=ExtResource( 12 )]
 position = Vector2( 1713, 151 )
+canvaslayer = NodePath("../../Interface")
 
 [node name="EntityGate" parent="Environment" instance=ExtResource( 9 )]
 position = Vector2( 1282, -280 )
@@ -95,7 +96,7 @@ position = Vector2( 1824, 136 )
 position = Vector2( 320, 536 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 8, 132 )
+position = Vector2( 48, 132 )
 
 [node name="Camera" parent="." instance=ExtResource( 3 )]
 position = Vector2( 160, 104 )

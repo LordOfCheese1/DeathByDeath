@@ -1,6 +1,9 @@
 extends KinematicBody2D
 
 
+var health_path
+export var canvaslayer : NodePath
+var HealthInterface = load("res://Prefabs/User Interface/PlayerHealth/PlayerHealth.tscn")
 var is_hit = false
 var gravity = 350
 var jump_velocity = -115
@@ -17,8 +20,16 @@ var is_attacking = false
 
 
 func _ready():
+	$HealthManager.max_health = Values.player_max_health
 	Values.player = self
 	add_to_group("player")
+	yield(get_tree().create_timer(0.1), "timeout")
+	$HealthManager.health = Values.player_health
+	
+	var health_interface_inst = HealthInterface.instance()
+	get_node(canvaslayer).add_child(health_interface_inst)
+	health_path = health_interface_inst
+	health_path.update()
 
 
 func _physics_process(delta):
@@ -66,15 +77,18 @@ func _physics_process(delta):
 			velocity.x += speed / accel
 	
 	
+	velocity.x = clamp(velocity.x, -speed - 12, speed + 12)
+	
+	
 	#all the attacks/abilities
 	if Input.is_action_just_pressed("attack") && !is_attacking:
 		attack()
 
 
 func _process(delta):
+	$HealthManager.health = Values.player_health
 	#Animations
 	$Visuals.rotation_degrees = velocity.x / 4
-	
 	if velocity.x != 0:
 		if !is_jumping && is_on_floor() && !is_attacking && !is_hit:
 			$AnimationPlayer.play("walk")
@@ -106,15 +120,15 @@ func attack():
 
 
 func _on_Hitbox_on_hit():
+	Values.player_health = $HealthManager.health
+	health_path.update()
+	
 	randomize()
 	is_hit = true
 	$AnimationPlayer.play("Hit")
 	var multiplier = [1,-1]
 	velocity.x = speed * multiplier[randi() % multiplier.size()]
 	velocity.y = jump_velocity / 2
-	Values.player_health = $HealthManager.health
-	$HealthManager.health = Values.player_health
-	$HealthManager.max_health = Values.player_max_health
 	Engine.time_scale = 0.1
 	MusicManager.volume_db = -18
 	while Engine.time_scale < 1:
@@ -125,4 +139,5 @@ func _on_Hitbox_on_hit():
 
 func heal(amount):
 	$HealthManager.health += amount
-	$HealthManager.health = Values.player_health
+	Values.player_health = $HealthManager.health
+	health_path.update()

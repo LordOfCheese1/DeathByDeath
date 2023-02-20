@@ -552,6 +552,7 @@ max_health = 4
 
 [node name="Attackbox" parent="." instance=ExtResource( 7 )]
 ignore = NodePath("../Hitbox")
+damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attackbox"]
 position = Vector2( 0, 15 )

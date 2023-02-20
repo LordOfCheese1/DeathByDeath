@@ -10,6 +10,7 @@
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 160, 159 )
+canvaslayer = NodePath("../CanvasLayer")
 
 [node name="Cursor" parent="." instance=ExtResource( 3 )]
 
@@ -23,3 +24,5 @@ tile_data = PoolIntArray( 0, 1, 4, 1, 1, 196609, 2, 1, 196609, 3, 1, 196609, 4, 
 
 [node name="Blood" parent="." instance=ExtResource( 5 )]
 position = Vector2( 31, 33 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

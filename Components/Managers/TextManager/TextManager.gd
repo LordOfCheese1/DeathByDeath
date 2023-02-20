@@ -9,6 +9,8 @@ func _ready():
 
 
 func change_text(text: String, time : float):
+	for i in get_children():
+		i.call_deferred("free")
 	var pos = 0
 	var y = 0
 	for i in text:
@@ -22,4 +24,5 @@ func change_text(text: String, time : float):
 		else:
 			y += 1
 			pos = 0
-		yield(get_tree().create_timer(time, true), "timeout")
+		if time != 0:
+			yield(get_tree().create_timer(time, true), "timeout")

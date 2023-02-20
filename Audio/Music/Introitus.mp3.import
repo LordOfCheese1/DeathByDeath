@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Introitus.mp3-95461d8907439b04f959b19dd438af04.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Introitus.mp3"
+dest_files=[ "res://.import/Introitus.mp3-95461d8907439b04f959b19dd438af04.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -10,6 +10,6 @@ func _ready():
 
 
 func hit(damage):
-	emit_signal("on_hit")
 	if health_manager != "":
 		get_node(health_manager).health -= damage
+	emit_signal("on_hit")

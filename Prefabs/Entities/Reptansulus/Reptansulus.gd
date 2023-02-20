@@ -14,10 +14,9 @@ var spotted_player = false
 
 
 func _ready():
-	$Hitbox.add_to_group("spider")
-	$Attackbox.add_to_group("spider")
+	$Hitbox.add_to_group("enemy")
+	$Attackbox.add_to_group("enemy")
 	$AnimationPlayer.play("Idle")
-	add_to_group("spider")
 
 
 func _physics_process(delta):

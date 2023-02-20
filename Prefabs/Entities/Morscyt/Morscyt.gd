@@ -48,7 +48,7 @@ func attack_combo():
 		dash.y = ((Values.player.position.y - 80) - position.y) / 80
 		$AnimationPlayer.play("Attack1")
 		yield(get_tree().create_timer(0.7, false), "timeout")
-		dash.y = ((Values.player.position.y - 32) - position.y) / 16
+		dash.y = ((Values.player.position.y - 48) - position.y) / 8
 		yield(get_tree().create_timer(1.81, false), "timeout")
 		is_attacking = false
 		regular_moving = true

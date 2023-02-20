@@ -7,3 +7,5 @@ var player_max_health = 15
 var bow = false
 var grapple = false
 var rocket = false
+
+var collected_healthups = []

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Prefabs/Environment/MainTilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Player/Player.tscn" type="PackedScene" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://Textures/Environment/Sign.png" type="Texture" id=21]
 [ext_resource path="res://Textures/Environment/Rope.png" type="Texture" id=22]
 [ext_resource path="res://Prefabs/Entities/SpookyGrass/SpookyGrass.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Prefabs/Entities/MaxHealthPickup/MaxHealthPickup.tscn" type="PackedScene" id=24]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1, 16 )
@@ -34,6 +35,9 @@ extents = Vector2( 1, 16 )
 [node name="BowPickup" parent="Environment" instance=ExtResource( 12 )]
 position = Vector2( 1713, 151 )
 canvaslayer = NodePath("../../Interface")
+
+[node name="MaxHealthPickup0" parent="Environment" instance=ExtResource( 24 )]
+position = Vector2( 79, 165 )
 
 [node name="EntityGate" parent="Environment" instance=ExtResource( 9 )]
 position = Vector2( 1282, -280 )

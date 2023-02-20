@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Prefabs/Environment/MainTilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Player/Player.tscn" type="PackedScene" id=2]
@@ -14,6 +14,10 @@
 [ext_resource path="res://Prefabs/Environment/Powerups/BowPickup/BowPickup.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Prefabs/Entities/Obicerba/Obicerba.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Textures/Environment/Background.png" type="Texture" id=14]
+[ext_resource path="res://Textures/Environment/SandPillar.png" type="Texture" id=15]
+[ext_resource path="res://Textures/Environment/Bone.png" type="Texture" id=16]
+[ext_resource path="res://Textures/Environment/SandRock.png" type="Texture" id=17]
+[ext_resource path="res://Textures/Environment/DinosaurHead.png" type="Texture" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1, 16 )
@@ -104,7 +108,41 @@ z_index = -2
 
 [node name="Background" type="Sprite" parent="Background"]
 modulate = Color( 0.729412, 0.380392, 0.337255, 1 )
-position = Vector2( 955.125, 3.50002 )
+position = Vector2( 953, 4 )
 scale = Vector2( 6.02422, 6.10096 )
 z_index = -1
 texture = ExtResource( 14 )
+
+[node name="SandRock2" type="Sprite" parent="Background"]
+position = Vector2( 670, -245 )
+z_index = -1
+texture = ExtResource( 17 )
+
+[node name="SandRock" type="Sprite" parent="Background"]
+position = Vector2( 120, 174 )
+texture = ExtResource( 17 )
+
+[node name="SandPillar" type="Sprite" parent="Background"]
+position = Vector2( 99, 164 )
+texture = ExtResource( 15 )
+
+[node name="Bone" type="Sprite" parent="Background"]
+position = Vector2( 271, 179 )
+texture = ExtResource( 16 )
+
+[node name="Bone2" type="Sprite" parent="Background"]
+position = Vector2( 253, 184 )
+rotation = -0.219911
+texture = ExtResource( 16 )
+
+[node name="SandPillar2" type="Sprite" parent="Background"]
+position = Vector2( 650, -262 )
+texture = ExtResource( 15 )
+
+[node name="SandRock3" type="Sprite" parent="Background"]
+position = Vector2( 919, 344 )
+texture = ExtResource( 17 )
+
+[node name="DinosaurHead" type="Sprite" parent="Background"]
+position = Vector2( 1028, 180 )
+texture = ExtResource( 18 )

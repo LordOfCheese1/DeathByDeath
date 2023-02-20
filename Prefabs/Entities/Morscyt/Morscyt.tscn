@@ -388,14 +388,12 @@ damage = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals/Scythe/Attackbox"]
 position = Vector2( 25.2741, 50.7259 )
 rotation = -0.785398
-scale = Vector2( 1, 1 )
 shape = SubResource( 17 )
 disabled = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Visuals/Scythe/Attackbox"]
 position = Vector2( 7.5, 7.5 )
 rotation = 0.785398
-scale = Vector2( 1, 1 )
 shape = SubResource( 18 )
 disabled = true
 
@@ -412,6 +410,10 @@ anims/StartAttack3 = SubResource( 6 )
 
 [node name="HealthManager" parent="." instance=ExtResource( 4 )]
 max_health = 45
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 4, 19.5 )
+scale = Vector2( 3.9, 4.85 )
 
 [connection signal="on_hit" from="Visuals/Scythe/Hitbox" to="." method="_on_Hitbox_on_hit"]
 [connection signal="health_depleted" from="HealthManager" to="." method="_on_HealthManager_health_depleted"]

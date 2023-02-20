@@ -413,5 +413,9 @@ anims/Death = SubResource( 8 )
 anims/Hit = SubResource( 3 )
 anims/RESET = SubResource( 2 )
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 1, 14 )
+scale = Vector2( 7.1, 6.4 )
+
 [connection signal="health_depleted" from="HealthManager" to="." method="_on_HealthManager_health_depleted"]
 [connection signal="on_hit" from="Visuals/Body/Hitbox" to="." method="_on_Hitbox_on_hit"]

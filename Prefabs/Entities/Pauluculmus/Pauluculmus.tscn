@@ -461,5 +461,9 @@ shape = SubResource( 6 )
 [node name="HealthManager" parent="." instance=ExtResource( 4 )]
 max_health = 2
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 0, 2.5 )
+scale = Vector2( 1, 0.85 )
+
 [connection signal="on_hit" from="Hitbox" to="." method="_on_Hitbox_on_hit"]
 [connection signal="health_depleted" from="HealthManager" to="." method="_on_HealthManager_health_depleted"]

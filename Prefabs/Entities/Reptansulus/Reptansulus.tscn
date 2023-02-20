@@ -557,5 +557,9 @@ ignore = NodePath("../Hitbox")
 position = Vector2( 0, 15 )
 shape = SubResource( 10 )
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 0.499998, 8.5 )
+scale = Vector2( 2.05, 1.85 )
+
 [connection signal="on_hit" from="Hitbox" to="." method="_on_Hitbox_on_hit"]
 [connection signal="health_depleted" from="HealthManager" to="." method="_on_HealthManager_health_depleted"]

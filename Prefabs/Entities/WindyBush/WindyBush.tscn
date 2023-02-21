@@ -93,4 +93,9 @@ shape = SubResource( 3 )
 anims/Cut = SubResource( 2 )
 anims/Float = SubResource( 1 )
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 10, -10 )
+
 [connection signal="on_hit" from="Hitbox" to="." method="_on_Hitbox_on_hit"]
+[connection signal="screen_entered" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_exited"]

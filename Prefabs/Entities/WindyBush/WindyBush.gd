@@ -10,3 +10,11 @@ func _on_Hitbox_on_hit():
 	$AnimationPlayer.play("Cut")
 	yield(get_tree().create_timer(0.3, false), "timeout")
 	call_deferred("free")
+
+
+func _on_VisibilityEnabler2D_screen_entered():
+	show()
+
+
+func _on_VisibilityEnabler2D_screen_exited():
+	hide()

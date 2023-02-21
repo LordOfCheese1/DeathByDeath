@@ -4,7 +4,7 @@ var player
 var player_health = 15
 var player_max_health = 15
 
-var bow = true
+var bow = false
 var grapple = false
 var rocket = false
 

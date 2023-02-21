@@ -17,12 +17,10 @@ func _ready():
 
 
 func _physics_process(delta):
-	
 	if EnemyFunctions.distance(Values.player.position, position).x < 120 && EnemyFunctions.distance(Values.player.position, position).y < 80 && spotted_player == false:
-		$AnimationPlayer.play("Awaken")
-		yield(get_tree().create_timer(0.6, false), "timeout")
 		MusicManager._switch_track("res://Audio/Music/2KyrieEleison.mp3")
-		yield(get_tree().create_timer(0.6, false), "timeout")
+		$AnimationPlayer.play("Awaken")
+		yield(get_tree().create_timer(1.2, false), "timeout")
 		$Visuals/Scythe/ParticleSpawner._start()
 		regular_moving = true
 		spotted_player = true

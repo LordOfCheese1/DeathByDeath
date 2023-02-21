@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/DomineJesu.mp3-438e071295dffc048b1b439a1ad3d9f8.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/DomineJesu.mp3"
+dest_files=[ "res://.import/DomineJesu.mp3-438e071295dffc048b1b439a1ad3d9f8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

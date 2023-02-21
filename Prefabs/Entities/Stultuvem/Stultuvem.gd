@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 
+var egg = load("res://Prefabs/Projectiles/Egg/Egg.tscn")
 var spotted_player = false
 var velocity = Vector2()
 var gravity = 400
@@ -8,11 +9,11 @@ var is_dead = false
 
 
 func _ready():
-	pass
+	add_to_group("enemy")
+	$Hitbox.add_to_group("enemy")
 
 
 func _physics_process(delta):
-	
 	move_and_slide(velocity)
 	if velocity.y < 350:
 		velocity.y += gravity * delta
@@ -25,6 +26,14 @@ func _physics_process(delta):
 			if !is_dead:
 				flap()
 		velocity.x += (Values.player.position.x - position.x) * delta
+		
+		if EnemyFunctions.distance(Values.player.position, position).x < 12:
+			randomize()
+			if randi() % 12 == 0:
+				var egg_inst = egg.instance()
+				egg_inst.position = position
+				get_parent().add_child(egg_inst)
+		
 	
 	if Values.player.position.x - position.x > 0:
 		$Visuals.scale.x = 1

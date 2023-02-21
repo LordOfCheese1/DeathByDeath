@@ -8,6 +8,7 @@ var velocity = Vector2()
 var regular_moving = false
 var is_attacking = false
 var dash = Vector2()
+var activated = false
 
 
 func _ready():
@@ -17,7 +18,8 @@ func _ready():
 
 
 func _physics_process(delta):
-	if EnemyFunctions.distance(Values.player.position, position).x < 120 && EnemyFunctions.distance(Values.player.position, position).y < 80 && spotted_player == false:
+	if EnemyFunctions.distance(Values.player.position, position).x < 120 && EnemyFunctions.distance(Values.player.position, position).y < 80 && !activated:
+		activated = true
 		MusicManager._switch_track("res://Audio/Music/2KyrieEleison.mp3")
 		$AnimationPlayer.play("Awaken")
 		yield(get_tree().create_timer(1.2, false), "timeout")

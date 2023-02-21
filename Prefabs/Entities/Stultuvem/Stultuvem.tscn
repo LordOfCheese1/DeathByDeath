@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Textures/Entities/Stultuvem/Body.png" type="Texture" id=1]
 [ext_resource path="res://Textures/Entities/Stultuvem/Head.png" type="Texture" id=2]
@@ -7,6 +7,34 @@
 [ext_resource path="res://Prefabs/Entities/Stultuvem/Stultuvem.gd" type="Script" id=5]
 [ext_resource path="res://Components/Collision/Hitbox/Hitbox.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Components/Managers/HealthManager/HealthManager.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Animation" id=6]
+resource_name = "Death"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visuals/Body:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ 0.0, -120.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Visuals:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "Flap"
@@ -118,6 +146,7 @@ texture = ExtResource( 1 )
 offset = Vector2( -1, 6 )
 
 [node name="Head" type="Sprite" parent="Visuals/Body"]
+position = Vector2( 0, 2 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -4 )
 
@@ -135,6 +164,7 @@ texture = ExtResource( 3 )
 offset = Vector2( 5, -1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Death = SubResource( 6 )
 anims/Flap = SubResource( 1 )
 anims/Idle = SubResource( 3 )
 anims/RESET = SubResource( 2 )
@@ -151,4 +181,7 @@ position = Vector2( 0, 1 )
 shape = SubResource( 5 )
 
 [node name="HealthManager" parent="." instance=ExtResource( 7 )]
-max_health = 4
+max_health = 6
+
+[connection signal="on_hit" from="Hitbox" to="." method="_on_Hitbox_on_hit"]
+[connection signal="health_depleted" from="HealthManager" to="." method="_on_HealthManager_health_depleted"]

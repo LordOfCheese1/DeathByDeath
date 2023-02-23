@@ -31,16 +31,16 @@ func _physics_process(delta):
 	
 	if !is_dead:
 		if !spotted_player:
-			if EnemyFunctions.distance(position, player.position).x < 128 && EnemyFunctions.distance(position, player.position).y < 128:
+			if EnemyFunctions.distance(position, Values.player.position).x < 128 && EnemyFunctions.distance(position, Values.player.position).y < 128:
 				spotted_player = true
 		else: #do this if spider is in player radius
 			if !is_jumping:
-				if player.position.x > position.x:
+				if Values.player.position.x > position.x:
 					walk(1)#walk left
-				elif player.position.x < position.x:
+				elif Values.player.position.x < position.x:
 					walk(-1)#walk right
 			
-			if player.position.y < position.y && player.is_on_floor():
+			if Values.player.position.y < position.y && Values.player.is_on_floor():
 				if is_on_floor():
 					jump()
 		
@@ -48,7 +48,7 @@ func _physics_process(delta):
 			if is_jumping:
 				is_jumping = false
 		
-		if player.position.x > position.x:
+		if Values.player.position.x > position.x:
 			$Visuals.scale.x = 1
 		elif player.position.x < position.x:
 			$Visuals.scale.x = -1
@@ -73,9 +73,9 @@ func walk(dir : int):
 
 func _on_Hitbox_on_hit():
 	is_hit = true
-	if player.position.x > position.x:
+	if Values.player.position.x > position.x:
 		velocity.x = -speed
-	elif player.position.x < position.x:
+	elif Values.player.position.x < position.x:
 		velocity.x = speed
 	if !is_dead:
 		$AnimationPlayer.play("Hit")

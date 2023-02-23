@@ -20,11 +20,11 @@ var is_attacking = false
 
 
 func _ready():
-	$HealthManager.max_health = Values.player_max_health
+	$HealthManager.max_health = Values.user_values["player_max_health"]
 	Values.player = self
 	add_to_group("player")
 	yield(get_tree().create_timer(0.1), "timeout")
-	$HealthManager.health = Values.player_health
+	$HealthManager.health = Values.user_values["player_health"]
 	
 	var health_interface_inst = HealthInterface.instance()
 	get_node(canvaslayer).add_child(health_interface_inst)
@@ -86,7 +86,7 @@ func _physics_process(delta):
 
 
 func _process(delta):
-	$HealthManager.health = Values.player_health
+	$HealthManager.health = Values.user_values["player_health"]
 	#Animations
 	$Visuals.rotation_degrees = velocity.x / 4
 	if velocity.x != 0:
@@ -120,7 +120,7 @@ func attack():
 
 
 func _on_Hitbox_on_hit():
-	Values.player_health = $HealthManager.health
+	Values.user_values["player_health"] = $HealthManager.health
 	health_path.update()
 	
 	randomize()
@@ -139,5 +139,5 @@ func _on_Hitbox_on_hit():
 
 func heal(amount):
 	$HealthManager.health += amount
-	Values.player_health = $HealthManager.health
+	Values.user_values["player_health"] = $HealthManager.health
 	health_path.update()

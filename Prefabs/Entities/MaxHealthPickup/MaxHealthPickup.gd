@@ -11,7 +11,7 @@ func _on_MaxHealthPickup_body_entered(body):
 	if body.is_in_group("player"):
 		$AnimationPlayer.play("Collect")
 		yield(get_tree().create_timer(0.5, false), "timeout")
-		Values.player_max_health += 5
-		Values.player.heal(Values.player_max_health - Values.player_health)
+		Values.user_values["player_max_health"] += 5
+		Values.player.heal(Values.user_values["player_max_health"] - Values.user_values["player_health"])
 		Values.user_values["collected_healthups"].append(name)
 		call_deferred("free")

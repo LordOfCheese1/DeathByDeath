@@ -24,4 +24,5 @@ func _on_TransitionManager_body_entered(body):
 		if switch_track_to != "":
 			MusicManager._switch_track(switch_track_to)
 		yield(get_tree().create_timer(0.2, false), "timeout")
+		Values.user_values["current_scene"] = scene
 		SceneHandler.switch_scene(player_pos, scene)

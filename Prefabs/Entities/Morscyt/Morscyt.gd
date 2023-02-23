@@ -73,6 +73,4 @@ func _on_HealthManager_health_depleted():
 	is_attacking = false
 	$AnimationPlayer.play("Death")
 	yield(get_tree().create_timer(1.1, false), "timeout")
-	Values.save_game()
-	Values.load_game()
 	call_deferred("free")

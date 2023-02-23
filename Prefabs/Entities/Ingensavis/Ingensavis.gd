@@ -9,6 +9,7 @@ var is_dead = false
 var required_player_distance = 96
 var attack_cooldown = 0
 var time_elapsed = 0
+var spiderbird_egg = load("res://Prefabs/Projectiles/SpiderBirdEgg/SpiderBirdEgg.tscn")
 
 
 func _ready():
@@ -47,10 +48,11 @@ func _physics_process(delta):
 		required_player_distance = 96
 	
 	
-	time_elapsed += 1
-	if time_elapsed > 480:
-		time_elapsed = 0
-		attack()
+	if spotted_player:
+		time_elapsed += 1
+		if time_elapsed > (480 - ($HealthManager.max_health - $HealthManager.health) * 2):
+			time_elapsed = 0
+			attack()
 	
 	velocity.x = clamp(velocity.x, -120, 120)
 
@@ -63,6 +65,9 @@ func flap():
 
 func attack():
 	if !is_dead:
+		var spiderbird_egg_inst = spiderbird_egg.instance()
+		spiderbird_egg_inst.position = position
+		get_parent().add_child(spiderbird_egg_inst)
 		$AnimationPlayer.play("Dive")
 	velocity.y = -80
 	required_player_distance = 24

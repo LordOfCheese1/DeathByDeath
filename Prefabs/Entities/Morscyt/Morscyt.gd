@@ -15,6 +15,9 @@ func _ready():
 	$Visuals/Scythe/Attackbox.add_to_group("enemy")
 	$Visuals/Scythe/Hitbox.add_to_group("enemy")
 	$Visuals/Scythe/ParticleSpawner.spawn_at = get_parent()
+	yield(get_tree().create_timer(0.1, false), "timeout")
+	if Values.user_values["defeated_bosses"].has(name):
+		call_deferred("free")
 
 
 func _physics_process(delta):
@@ -63,10 +66,13 @@ func _on_Hitbox_on_hit():
 
 
 func _on_HealthManager_health_depleted():
+	Values.user_values["defeated_bosses"].append(name)
 	MusicManager._switch_track("res://Audio/Music/GosienneNo1.mp3")
 	is_dead = true
 	regular_moving = false
 	is_attacking = false
 	$AnimationPlayer.play("Death")
 	yield(get_tree().create_timer(1.1, false), "timeout")
+	Values.save_game()
+	Values.load_game()
 	call_deferred("free")

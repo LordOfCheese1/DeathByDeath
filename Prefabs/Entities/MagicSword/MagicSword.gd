@@ -26,7 +26,7 @@ func _physics_process(delta):
 func _process(delta):
 	if Input.is_action_just_pressed("attack"):
 		swing_attack()
-	if Values.bow:
+	if Values.user_values["bow"] == true:
 		if Input.is_action_just_pressed("shoot") && !shoot_cooldown:
 			if get_parent().is_in_group("player"):
 				get_parent().velocity.y += -$Pivot.transform.x.y * 50

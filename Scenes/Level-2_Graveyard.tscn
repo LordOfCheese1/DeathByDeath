@@ -192,9 +192,8 @@ shape = SubResource( 1 )
 
 [node name="TransitionManager3" parent="Environment" instance=ExtResource( 5 )]
 position = Vector2( 959, 544 )
-player_pos = Vector2( 632, 596 )
-scene = "res://Scenes/Level-1_Spider.tscn"
-switch_track_to = "res://Audio/Music/GosienneNo1.mp3"
+player_pos = Vector2( 8, 132 )
+scene = "res://Scenes/Level-3_LushRuins.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TransitionManager3"]
 shape = SubResource( 1 )
@@ -268,7 +267,7 @@ position = Vector2( 931, 373 )
 position = Vector2( 711, 563 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 8, 164 )
+position = Vector2( 29, 164 )
 canvaslayer = NodePath("../Interface")
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]

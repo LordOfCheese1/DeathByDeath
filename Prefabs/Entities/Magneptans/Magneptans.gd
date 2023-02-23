@@ -15,6 +15,9 @@ func _ready():
 	add_to_group("boss")
 	ceiling_pos = global_position
 	$AnimationPlayer.play("RESET")
+	yield(get_tree().create_timer(0.1, false), "timeout")
+	if Values.user_values["defeated_bosses"].has(name):
+		call_deferred("free")
 
 
 func _physics_process(delta):
@@ -45,6 +48,7 @@ func _on_Hitbox_on_hit():
 
 
 func _on_HealthManager_health_depleted():
+	Values.user_values["defeated_bosses"].append(name)
 	MusicManager._switch_track("res://Audio/Music/GosienneNo1.mp3")
 	is_dead = true
 	$AnimationPlayer.play("Death")

@@ -3,7 +3,7 @@
 [ext_resource path="res://Prefabs/Environment/MainTilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Components/User Interface/Cursor/Cursor.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Prefabs/Entities/Stultuvem/Stultuvem.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Prefabs/Entities/Ingensavis/Ingensavis.tscn" type="PackedScene" id=4]
 
 [node name="Testing" type="Node2D"]
 
@@ -20,5 +20,5 @@ tile_data = PoolIntArray( 0, 1, 4, 1, 1, 196609, 2, 1, 196609, 3, 1, 196609, 4, 
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Stultuvem" parent="." instance=ExtResource( 4 )]
-position = Vector2( 35, 181 )
+[node name="Ingensavis" parent="." instance=ExtResource( 4 )]
+position = Vector2( 72, 154 )

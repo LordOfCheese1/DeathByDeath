@@ -6,6 +6,7 @@ var spotted_player = false
 var velocity = Vector2()
 var gravity = 400
 var is_dead = false
+var egg_cooldown = 100
 
 
 func _ready():
@@ -27,9 +28,11 @@ func _physics_process(delta):
 				flap()
 		velocity.x += (Values.player.position.x - position.x) * delta
 		
-		if EnemyFunctions.distance(Values.player.position, position).x < 12:
-			randomize()
-			if randi() % 12 == 0:
+		if EnemyFunctions.distance(Values.player.position, position).x < 64 && EnemyFunctions.distance(Values.player.position, position).y > 64:
+			if egg_cooldown > 0:
+				egg_cooldown -= 1
+			else:
+				egg_cooldown = 100
 				var egg_inst = egg.instance()
 				egg_inst.position = position
 				get_parent().add_child(egg_inst)

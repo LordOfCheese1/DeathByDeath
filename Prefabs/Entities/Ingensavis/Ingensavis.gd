@@ -84,6 +84,7 @@ func _on_Hitbox_on_hit():
 
 func _on_HealthManager_health_depleted():
 	Values.user_values["defeated_bosses"].append(name)
+	Values.save_game()
 	is_dead = true
 	MusicManager._switch_track("res://Audio/Music/Introitus.mp3")
 	velocity = Vector2(0, 0)

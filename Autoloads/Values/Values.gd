@@ -9,36 +9,40 @@ var is_loading_in = false
 func _ready():
 	load_game()
 	get_tree().change_scene(user_values["current_scene"])
+	is_loading_in = true
+
+
+var user_values = {
+	"bow" : false,
+	"rocket" : false,
+	"player_health" : 15,
+	"player_max_health" : 15,
+	"player_x" : 162,
+	"player_y" : 164,
+	"collected_healthups" : [],
+	"defeated_bosses" : [],
+	"beaten_game" : false,
+	"current_scene" : "res://Scenes/Level-0_Start.tscn",
+	"current_music" : "res://Audio/Music/GosienneNo1.mp3"
+}
 
 
 func _process(delta):
 	if is_loading_in:
 		is_loading_in = false
-		player.position = user_values["player_pos"]
-
-
-var user_values = {
-	"bow" : true,
-	"grapple" : false,
-	"rocket" : true,
-	"player_health" : 15,
-	"player_max_health" : 15,
-	"player_pos" : Vector2(162, 164),
-	"collected_healthups" : [],
-	"defeated_bosses" : [],
-	"beaten_game" : false,
-	"current_scene" : "res://Scenes/Level-0_Start.tscn"
-}
+		player.position.x = user_values["player_x"]
+		player.position.y = user_values["player_y"]
 
 
 func save_game():
+	user_values["player_x"] = round(player.position.x)
+	user_values["player_y"] = round(player.position.y)
 	save_file.open("user://savefile.json", File.WRITE)
 	save_file.store_string(to_json(user_values))
 	save_file.close()
 
 
 func load_game():
-	is_loading_in = true
 	save_file.open("user://savefile.json", File.READ)
 	if parse_json(save_file.get_as_text()) != null:
 		user_values = parse_json(save_file.get_as_text())

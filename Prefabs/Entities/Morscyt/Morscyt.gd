@@ -67,6 +67,7 @@ func _on_Hitbox_on_hit():
 
 func _on_HealthManager_health_depleted():
 	Values.user_values["defeated_bosses"].append(name)
+	Values.save_game()
 	MusicManager._switch_track("res://Audio/Music/GosienneNo1.mp3")
 	is_dead = true
 	regular_moving = false

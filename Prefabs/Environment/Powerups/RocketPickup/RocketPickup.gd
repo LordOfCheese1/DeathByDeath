@@ -6,20 +6,20 @@ export var canvaslayer : NodePath
 
 
 func _ready():
-	yield(get_tree().create_timer(0.1, false), "timeout")
-	if Values.user_values["bow"] == true:
+	$AnimationPlayer.play("Float")
+	if Values.user_values["rocket"]:
 		call_deferred("free")
 
 
-func _on_BowPickup_body_entered(body):
+func _on_RocketPickup_body_entered(body):
 	if body.is_in_group("player"):
 		$AnimationPlayer.play("Collect")
-		Values.user_values["bow"] = true
+		Values.user_values["rocket"] = true
 		Values.save_game()
-		yield(get_tree().create_timer(0.6, false), "timeout")
+		yield(get_tree().create_timer(0.5, false), "timeout")
 		var pickup_screen_inst = pickup_screen.instance()
-		pickup_screen_inst.input = "RMB"
-		pickup_screen_inst.action = "SHOOT_YOUR_SWORD"
-		pickup_screen_inst.usage = load("res://Textures/Interface/BowDepiction.png")
+		pickup_screen_inst.input = "UP_WHILE_IN_THE_AIR"
+		pickup_screen_inst.action = "JUMP_TWICE"
+		pickup_screen_inst.usage = load("res://Textures/Interface/ExplosionDepiction.png")
 		get_node(canvaslayer).add_child(pickup_screen_inst)
 		call_deferred("free")

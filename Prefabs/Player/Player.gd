@@ -7,19 +7,21 @@ var HealthInterface = load("res://Prefabs/User Interface/PlayerHealth/PlayerHeal
 var is_hit = false
 var gravity = 350
 var jump_velocity = -115
+var rocket_velocity = -165
 var accel = 5
 var speed = 60
 var velocity = Vector2()
 var coyote_time = 0
 var remember_jump = 0
-var is_plummiting = false
 var is_jumping = false
-var is_bouncing = false
 var max_coyote_time = 8
 var is_attacking = false
+var jumped = false
+var double_jumped = false
 
 
 func _ready():
+	$ParticleSpawner.spawn_at = get_parent()
 	$HealthManager.max_health = Values.user_values["player_max_health"]
 	Values.player = self
 	add_to_group("player")
@@ -44,6 +46,10 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	
 	if is_on_floor():
+		$ParticleSpawner._stop()
+		gravity = 350
+		jumped = false
+		double_jumped = false
 		if is_jumping:
 			is_jumping = false
 		
@@ -52,9 +58,24 @@ func _physics_process(delta):
 		if coyote_time > 0:
 			coyote_time -= 1
 	
+	
 	if coyote_time > 0:
-		if remember_jump > 0 && !is_bouncing:
+		if remember_jump > 0:
 			jump()
+			coyote_time = 0
+			remember_jump = 0
+			jumped = true
+	elif coyote_time <= 0 && !is_on_floor() && Values.user_values["rocket"] && !double_jumped && jumped:
+		if remember_jump > 0:
+			$ParticleSpawner._start()
+			velocity.y = rocket_velocity
+			gravity = 300
+			double_jumped = true
+	
+	
+	if coyote_time <= 0:
+		jumped = true
+	
 	
 	if remember_jump > 0:
 		remember_jump -= 1

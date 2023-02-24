@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Prefabs/Environment/MainTilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Player/Player.tscn" type="PackedScene" id=2]
@@ -10,6 +10,15 @@
 [ext_resource path="res://Components/Managers/TransitionManager/TransitionManager.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Prefabs/Entities/Ingensavis/Ingensavis.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Prefabs/Environment/EntityGate/EntityGate.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Prefabs/Environment/Powerups/RocketPickup/RocketPickup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Prefabs/Entities/MaxHealthPickup/MaxHealthPickup.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Textures/Environment/Bone.png" type="Texture" id=13]
+[ext_resource path="res://Textures/Environment/BigGravestone.png" type="Texture" id=14]
+[ext_resource path="res://Textures/Environment/TwistedTree.png" type="Texture" id=15]
+[ext_resource path="res://Textures/Environment/StoneGravestone.png" type="Texture" id=16]
+[ext_resource path="res://Textures/Environment/CopperGravestone.png" type="Texture" id=17]
+[ext_resource path="res://Prefabs/Entities/WindyBush/WindyBush.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Textures/Environment/LongGravestone.png" type="Texture" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1, 16 )
@@ -24,6 +33,77 @@ modulate = Color( 0.196078, 0.243137, 0.309804, 1 )
 position = Vector2( 800, 312 )
 scale = Vector2( 5, 3 )
 texture = ExtResource( 7 )
+
+[node name="BigGravestone" type="Sprite" parent="Background"]
+position = Vector2( 1333, 580 )
+rotation = -0.198054
+texture = ExtResource( 14 )
+
+[node name="BigGravestone2" type="Sprite" parent="Background"]
+position = Vector2( 1037, 572 )
+rotation = 2.64477
+texture = ExtResource( 14 )
+
+[node name="CopperGravestone" type="Sprite" parent="Background"]
+position = Vector2( 1381, 599 )
+texture = ExtResource( 17 )
+
+[node name="Bone" type="Sprite" parent="Background"]
+position = Vector2( 1400, 594 )
+texture = ExtResource( 13 )
+
+[node name="TwistedTree" type="Sprite" parent="Background"]
+position = Vector2( 1556, 585 )
+texture = ExtResource( 15 )
+
+[node name="StoneGravestone" type="Sprite" parent="Background"]
+position = Vector2( 1501, 601 )
+texture = ExtResource( 16 )
+
+[node name="LongGravestone" type="Sprite" parent="Background"]
+position = Vector2( 838, 581 )
+texture = ExtResource( 19 )
+
+[node name="TwistedTree2" type="Sprite" parent="Background"]
+position = Vector2( 686, 313 )
+texture = ExtResource( 15 )
+
+[node name="StoneGravestone2" type="Sprite" parent="Background"]
+position = Vector2( 846, 329 )
+texture = ExtResource( 16 )
+
+[node name="LongGravestone2" type="Sprite" parent="Background"]
+position = Vector2( 863, 325 )
+texture = ExtResource( 19 )
+
+[node name="CopperGravestone2" type="Sprite" parent="Background"]
+position = Vector2( 909, 343 )
+texture = ExtResource( 17 )
+
+[node name="CopperGravestone3" type="Sprite" parent="Background"]
+position = Vector2( 826, 519 )
+texture = ExtResource( 17 )
+
+[node name="StoneGravestone3" type="Sprite" parent="Background"]
+position = Vector2( 1230, 585 )
+texture = ExtResource( 16 )
+
+[node name="LongGravestone3" type="Sprite" parent="Background"]
+position = Vector2( 508, 231 )
+rotation = 0.185641
+texture = ExtResource( 19 )
+
+[node name="BigGravestone3" type="Sprite" parent="Background"]
+position = Vector2( 394, 161 )
+texture = ExtResource( 14 )
+
+[node name="CopperGravestone4" type="Sprite" parent="Background"]
+position = Vector2( 168, 183 )
+texture = ExtResource( 17 )
+
+[node name="LongGravestone4" type="Sprite" parent="Background"]
+position = Vector2( 116, 181 )
+texture = ExtResource( 19 )
 
 [node name="Environment" type="Node2D" parent="."]
 
@@ -60,6 +140,29 @@ scene = "res://Scenes/Level-2_Graveyard.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TransitionManager"]
 shape = SubResource( 1 )
+
+[node name="RocketPickup" parent="Environment" instance=ExtResource( 11 )]
+position = Vector2( 1192, 540 )
+canvaslayer = NodePath("../../Interface")
+
+[node name="MaxHealthPickup3" parent="Environment" instance=ExtResource( 12 )]
+position = Vector2( 1362, 591 )
+
+[node name="WindyBush" parent="Environment" instance=ExtResource( 18 )]
+position = Vector2( 1296, 462 )
+rotation = 1.39626
+
+[node name="WindyBush2" parent="Environment" instance=ExtResource( 18 )]
+position = Vector2( 1151, 474 )
+rotation = 1.39626
+
+[node name="WindyBush3" parent="Environment" instance=ExtResource( 18 )]
+position = Vector2( 292, 96 )
+rotation = 2.79253
+
+[node name="WindyBush4" parent="Environment" instance=ExtResource( 18 )]
+position = Vector2( 611, 160 )
+rotation = 2.79253
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 8, 132 )

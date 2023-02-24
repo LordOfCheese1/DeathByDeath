@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Textures/Entities/Player/Player.png" type="Texture" id=1]
 [ext_resource path="res://Prefabs/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Components/Managers/HealthManager/HealthManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Components/Collision/Hitbox/Hitbox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/Entities/MagicSword/MagicSword.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/Visuals/ParticleSpawner/ParticleSpawner.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 9.5 )
@@ -262,5 +263,12 @@ anims/RESET = SubResource( 6 )
 anims/idle = SubResource( 5 )
 anims/jump = SubResource( 3 )
 anims/walk = SubResource( 4 )
+
+[node name="ParticleSpawner" parent="." instance=ExtResource( 6 )]
+position = Vector2( 0, 6 )
+place_on_z = -1
+pause_on_start = true
+wait_time = 0.04
+particle_to_spawn = "res://Prefabs/Particles/SwordTrail/SwordTrail.tscn"
 
 [connection signal="on_hit" from="Hitbox" to="." method="_on_Hitbox_on_hit"]

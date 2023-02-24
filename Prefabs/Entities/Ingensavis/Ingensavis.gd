@@ -75,7 +75,7 @@ func attack():
 
 
 func _on_Hitbox_on_hit():
-	if attack_cooldown <= 0:
+	if $AnimationPlayer.current_animation != "Dive" && !is_dead:
 		$AnimationPlayer.play("Hit")
 	if !spotted_player:
 		spotted_player = true

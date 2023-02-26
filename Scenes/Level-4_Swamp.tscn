@@ -19,8 +19,8 @@ z_index = -5
 
 [node name="Background" type="Sprite" parent="Background"]
 modulate = Color( 0.196078, 0.243137, 0.309804, 1 )
-position = Vector2( 640, 208 )
-scale = Vector2( 4, 2 )
+position = Vector2( 800, 208 )
+scale = Vector2( 5, 2 )
 texture = ExtResource( 6 )
 
 [node name="Environment" type="Node2D" parent="."]

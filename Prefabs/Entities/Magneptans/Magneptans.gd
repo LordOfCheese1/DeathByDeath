@@ -28,7 +28,7 @@ func _physics_process(delta):
 	if !activated:
 		if EnemyFunctions.distance(Values.player.position, position).y < 300:
 			if EnemyFunctions.distance(Values.player.position, position).x < 32:
-				MusicManager._switch_track("res://Audio/Music/ShostakovichStringQuartet.mp3")
+				MusicManager._switch_track("res://Audio/Music/DiesIrae.mp3")
 				activated = true
 				yield(get_tree().create_timer(2, false), "timeout")
 				_shoot_stuff()

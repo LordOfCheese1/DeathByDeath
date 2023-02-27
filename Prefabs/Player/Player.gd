@@ -18,6 +18,7 @@ var max_coyote_time = 8
 var is_attacking = false
 var jumped = false
 var double_jumped = false
+var in_water = false
 
 
 func _ready():
@@ -42,12 +43,15 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	#doing stuff with vertical velocity
-	if velocity.y < 350:
+	if velocity.y < gravity:
 		velocity.y += gravity * delta
 	
 	if is_on_floor():
 		$ParticleSpawner._stop()
-		gravity = 350
+		if !in_water:
+			gravity = 350
+		else:
+			gravity = 50
 		jumped = false
 		double_jumped = false
 		if is_jumping:
@@ -69,7 +73,8 @@ func _physics_process(delta):
 		if remember_jump > 0:
 			$ParticleSpawner._start()
 			velocity.y = rocket_velocity
-			gravity = 300
+			if !in_water:
+				gravity = 300
 			double_jumped = true
 	
 	
@@ -162,3 +167,22 @@ func heal(amount):
 	$HealthManager.health += amount
 	Values.user_values["player_health"] = $HealthManager.health
 	health_path.update()
+
+
+func _on_WaterDetector_area_entered(area):
+	if area.is_in_group("water"):
+		in_water = true
+		jump_velocity = -60
+		velocity.y = 10
+		gravity = 50
+		speed = 40
+		velocity.x = stepify(velocity.x, 40)
+
+
+func _on_WaterDetector_area_exited(area):
+	if area.is_in_group("water"):
+		in_water = false
+		jump_velocity = -115
+		gravity = 350
+		speed = 60
+		velocity.x = stepify(velocity.x, 12)

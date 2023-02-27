@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/HungarianDance5.mp3-7424e5c844b31cb7d8c509492468bd28.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/HungarianDance5.mp3"
+dest_files=[ "res://.import/HungarianDance5.mp3-7424e5c844b31cb7d8c509492468bd28.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

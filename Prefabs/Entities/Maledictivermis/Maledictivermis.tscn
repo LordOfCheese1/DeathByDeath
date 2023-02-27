@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Prefabs/Entities/Maledictivermis/Maledictivermis.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Entities/Maledictivermis/Body.png" type="Texture" id=2]
@@ -178,9 +178,6 @@ height = 18.0
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 12, 3.5 )
 
-[sub_resource type="CircleShape2D" id=6]
-radius = 4.0
-
 [node name="Maledictivermis" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 2
@@ -218,8 +215,8 @@ ignore = NodePath("../Hitbox")
 damage = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attackbox"]
-position = Vector2( -9, -3 )
-shape = SubResource( 6 )
+position = Vector2( 0, -3.5 )
+shape = SubResource( 5 )
 
 [connection signal="on_hit" from="Hitbox" to="." method="_on_Hitbox_on_hit"]
 [connection signal="health_depleted" from="HealthManager" to="." method="_on_HealthManager_health_depleted"]

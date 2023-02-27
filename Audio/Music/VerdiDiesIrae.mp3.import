@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/VerdiDiesIrae.mp3-11b8368739227a8ddcb2a249529b8eb2.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/VerdiDiesIrae.mp3"
+dest_files=[ "res://.import/VerdiDiesIrae.mp3-11b8368739227a8ddcb2a249529b8eb2.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -12,7 +12,7 @@ func _ready():
 
 func _process(delta):
 	if follow != "":
-		if get_node(follow) != null:
+		if get_node_or_null(follow) != null:
 			position = get_node(follow).position
 	position.x = stepify(position.x + (screen_size.x / 2), screen_size.x) - (screen_size.x / 2)
 	position.y = stepify(position.y + (screen_size.y / 2), screen_size.y) - (screen_size.y / 2)

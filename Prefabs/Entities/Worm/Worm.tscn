@@ -61,4 +61,50 @@ position = Vector2( -64, 0 )
 z_index = -2
 texture = ExtResource( 4 )
 
+[node name="Segment9" type="Sprite" parent="."]
+position = Vector2( -72, 0 )
+z_index = -2
+texture = ExtResource( 4 )
+
+[node name="Segment10" type="Sprite" parent="."]
+position = Vector2( -80, 0 )
+z_index = -2
+texture = ExtResource( 4 )
+
+[node name="Segment11" type="Sprite" parent="."]
+position = Vector2( -88, 0 )
+z_index = -2
+texture = ExtResource( 4 )
+
+[node name="Segment12" type="Sprite" parent="."]
+position = Vector2( -96, 0 )
+z_index = -2
+texture = ExtResource( 4 )
+
+[node name="Segment13" type="Sprite" parent="."]
+position = Vector2( -104, 0 )
+z_index = -2
+texture = ExtResource( 4 )
+
+[node name="Segment14" type="Sprite" parent="."]
+position = Vector2( -112, 0 )
+z_index = -2
+texture = ExtResource( 4 )
+
+[node name="Segment15" type="Sprite" parent="."]
+position = Vector2( -120, 0 )
+z_index = -2
+texture = ExtResource( 4 )
+
+[node name="Segment16" type="Sprite" parent="."]
+position = Vector2( -128, 0 )
+z_index = -2
+texture = ExtResource( 4 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 1, -10 )
+scale = Vector2( 8.6, 8.5 )
+
 [connection signal="on_attack" from="Head" to="." method="_on_Head_on_attack"]
+[connection signal="screen_entered" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_exited"]

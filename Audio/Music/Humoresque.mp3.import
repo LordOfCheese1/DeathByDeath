@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Humoresque.mp3-ec6399aeb9f567c805f42db1e3ba6327.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Humoresque.mp3"
+dest_files=[ "res://.import/Humoresque.mp3-ec6399aeb9f567c805f42db1e3ba6327.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

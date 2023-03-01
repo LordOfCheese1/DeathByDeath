@@ -22,6 +22,9 @@ func _process(delta):
 				if EnemyFunctions.distance(Values.player.position, position).x > required_distance:
 					$AnimationPlayer.play("Close")
 	
+	if !entity_defeated && EnemyFunctions.distance(Values.player.position, position).y > 160:
+		$AnimationPlayer.play("Open")
+	
 	if get_node_or_null(entity) == null && !$CollisionShape2D.disabled:
 		entity_defeated = true
 		$AnimationPlayer.play("Open")

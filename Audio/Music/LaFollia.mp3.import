@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/LaFollia.mp3-d5c6a241ae693147be619edc10bb9229.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/LaFollia.mp3"
+dest_files=[ "res://.import/LaFollia.mp3-d5c6a241ae693147be619edc10bb9229.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

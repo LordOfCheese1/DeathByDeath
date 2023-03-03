@@ -4,10 +4,13 @@ extends KinematicBody2D
 var velocity = Vector2()
 var spotted_player = false
 var speed = 20
+var is_dead = false
 
 
 func _ready():
-	pass
+	yield(get_tree().create_timer(0.1, false), "timeout")
+	if Values.user_values["defeated_bosses"].has(name):
+		call_deferred("free")
 
 
 func _physics_process(delta):
@@ -20,7 +23,7 @@ func _physics_process(delta):
 		MusicManager._switch_track("res://Audio/Music/HungarianDance5.mp3")
 	
 	look_at(Values.player.position)
-	if spotted_player:
+	if spotted_player && !is_dead:
 		velocity += (transform.x * 80) / ($HealthManager.health + 20)
 	else:
 		velocity = Vector2(0, 0)
@@ -43,10 +46,16 @@ func _physics_process(delta):
 
 
 func _on_Hitbox_on_hit():
-	$AnimationPlayer.play("Hit")
+	if !is_dead:
+		$AnimationPlayer.play("Hit")
 	velocity = transform.x * -15
 
 
 func _on_HealthManager_health_depleted():
-	MusicManager._switch_track("res://Audio/Music/Humoresque.mp3")
+	is_dead = true
+	MusicManager._switch_track("res://Audio/Music/LaFollia.mp3")
+	Values.user_values["defeated_bosses"].append(name)
+	Values.save_game()
+	$AnimationPlayer.play("Death")
+	yield(get_tree().create_timer(0.6, false), "timeout")
 	call_deferred("free")

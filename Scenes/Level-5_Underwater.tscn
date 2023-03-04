@@ -190,6 +190,15 @@ switch_track_to = "res://Audio/Music/Introitus.mp3"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TransitionManager2"]
 shape = SubResource( 1 )
 
+[node name="TransitionManager3" parent="Environment" instance=ExtResource( 11 )]
+position = Vector2( 1, -240 )
+player_pos = Vector2( 1592, 388 )
+scene = "res://Scenes/Level-6_ScarySpider.tscn"
+switch_track_to = "res://Audio/Music/GnosienneNo3.mp3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TransitionManager3"]
+shape = SubResource( 1 )
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 8, 52 )
 canvaslayer = NodePath("../Interface")

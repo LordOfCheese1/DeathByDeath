@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Prefabs/Entities/ClawMonster/ClawMonster.gd" type="Script" id=1]
+[ext_resource path="res://Textures/Entities/ClawMonster/Body.png" type="Texture" id=2]
+[ext_resource path="res://Textures/Entities/ClawMonster/Eye.png" type="Texture" id=3]
+[ext_resource path="res://Textures/Entities/ClawMonster/Claw.png" type="Texture" id=4]
+[ext_resource path="res://Prefabs/Entities/ClawMonster/ClawMonsterClaw.gd" type="Script" id=5]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 3, 5 )
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 11.0454
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8, 19 )
+
+[node name="ClawMonster" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 1 )
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite" parent="Visuals"]
+texture = ExtResource( 2 )
+
+[node name="Eye" type="Sprite" parent="Visuals/Body"]
+texture = ExtResource( 3 )
+
+[node name="Claw" type="Sprite" parent="Visuals/Body"]
+position = Vector2( 16, 0 )
+texture = ExtResource( 4 )
+offset = Vector2( 23, -7 )
+script = ExtResource( 5 )
+
+[node name="FloorDetectorR" type="Area2D" parent="Visuals/Body/Claw"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals/Body/Claw/FloorDetectorR"]
+position = Vector2( 42, -6 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Visuals/Body/Claw/FloorDetectorR"]
+position = Vector2( 40, -6 )
+shape = SubResource( 3 )
+
+[node name="Claw2" type="Sprite" parent="Visuals/Body"]
+position = Vector2( -16, 0 )
+rotation = 0.00174261
+texture = ExtResource( 4 )
+offset = Vector2( -23, -7 )
+flip_h = true
+script = ExtResource( 5 )
+
+[node name="FloorDetectorL" type="Area2D" parent="Visuals/Body/Claw2"]
+rotation = -0.00174261
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals/Body/Claw2/FloorDetectorL"]
+position = Vector2( -42, -6 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Visuals/Body/Claw2/FloorDetectorL"]
+position = Vector2( -40, -6 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 5 )
+shape = SubResource( 1 )
+
+[node name="CeilingDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CeilingDetector"]
+position = Vector2( 0, -25 )
+shape = SubResource( 4 )
+
+[connection signal="clawed" from="Visuals/Body/Claw" to="." method="_on_Claw_clawed"]
+[connection signal="body_entered" from="Visuals/Body/Claw/FloorDetectorR" to="Visuals/Body/Claw" method="_on_FloorDetectorR_body_entered"]
+[connection signal="clawed" from="Visuals/Body/Claw2" to="." method="_on_Claw2_clawed"]
+[connection signal="body_entered" from="Visuals/Body/Claw2/FloorDetectorL" to="Visuals/Body/Claw2" method="_on_FloorDetectorL_body_entered"]
+[connection signal="body_entered" from="CeilingDetector" to="." method="_on_CeilingDetector_body_entered"]
+[connection signal="body_exited" from="CeilingDetector" to="." method="_on_CeilingDetector_body_exited"]

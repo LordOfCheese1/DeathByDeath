@@ -11,6 +11,7 @@ var gravity = 300
 var velocity = Vector2()
 var player
 var spotted_player = false
+var footstep_counter = 7
 
 
 func _ready():
@@ -54,6 +55,13 @@ func _physics_process(delta):
 			$Visuals.scale.x = -1
 	else:
 		velocity.x = 0
+	
+	if velocity.x != 0 && is_on_floor():
+		footstep_counter -= 1
+		if footstep_counter <= 0:
+			$Footstep.pitch_scale = rand_range(0.8, 1.2)
+			$Footstep.play(0.0)
+			footstep_counter = 7
 
 
 func jump():
@@ -72,6 +80,9 @@ func walk(dir : int):
 
 
 func _on_Hitbox_on_hit():
+	randomize()
+	$Hit.pitch_scale = rand_range(0.8, 1.2)
+	$Hit.play(0.0)
 	is_hit = true
 	if Values.player.position.x > position.x:
 		velocity.x = -speed

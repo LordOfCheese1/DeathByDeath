@@ -77,7 +77,7 @@ func _physics_process(delta):
 				gravity = 300
 				velocity.y = rocket_velocity
 			else:
-				velocity.y = rocket_velocity / 3
+				velocity.y = rocket_velocity / 2
 			randomize()
 			$DoubleJump.pitch_scale = rand_range(0.8, 1.2)
 			$DoubleJump.play(0.0)

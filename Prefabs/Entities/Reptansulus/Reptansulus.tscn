@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Textures/Entities/Reptansulus/LegL.png" type="Texture" id=1]
 [ext_resource path="res://Textures/Entities/Reptansulus/Body.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Components/Managers/HealthManager/HealthManager.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Components/Collision/Hitbox/Hitbox.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Components/Collision/Attackbox/Attackbox.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Audio/SFX/SpiderTap.wav" type="AudioStream" id=8]
+[ext_resource path="res://Audio/SFX/SpiderHit.wav" type="AudioStream" id=9]
 
 [sub_resource type="Animation" id=9]
 resource_name = "Death"
@@ -561,6 +563,12 @@ shape = SubResource( 10 )
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
 position = Vector2( 0.499998, 8.5 )
 scale = Vector2( 2.05, 1.85 )
+
+[node name="Footstep" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
 
 [connection signal="on_hit" from="Hitbox" to="." method="_on_Hitbox_on_hit"]
 [connection signal="health_depleted" from="HealthManager" to="." method="_on_HealthManager_health_depleted"]

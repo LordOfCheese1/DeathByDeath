@@ -35,9 +35,9 @@ func _on_Claw2_clawed():
 		velocity.y = -claw_accel
 	
 	if Values.player.position.x - position.x > 0:
-		velocity.x += 10
+		velocity.x += 20
 	else:
-		velocity.x -= 10
+		velocity.x -= 20
 	
 	if randi() % 6 == 0:
 		velocity.y = -80
@@ -50,9 +50,9 @@ func _on_Claw_clawed():
 		velocity.y = -claw_accel
 	
 	if Values.player.position.x - position.x > 0:
-		velocity.x += 10
+		velocity.x += 20
 	else:
-		velocity.x -= 10
+		velocity.x -= 20
 	
 	if randi() % 6 == 0:
 		velocity.y = -80

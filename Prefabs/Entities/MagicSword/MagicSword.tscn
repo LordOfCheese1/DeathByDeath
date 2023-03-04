@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Prefabs/Entities/MagicSword/MagicSword.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Entities/Sword/Handle.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Components/Visuals/ParticleSpawner/ParticleSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Audio/SFX/SwordHit.wav" type="AudioStream" id=6]
 [ext_resource path="res://Audio/SFX/SwordSwing.wav" type="AudioStream" id=7]
+[ext_resource path="res://Audio/SFX/ShootSword.wav" type="AudioStream" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 24.0
@@ -359,5 +360,8 @@ stream = ExtResource( 6 )
 
 [node name="Swing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
 
 [connection signal="on_attack" from="Pivot/Attackbox" to="." method="_on_Attackbox_on_attack"]

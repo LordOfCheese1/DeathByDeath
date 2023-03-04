@@ -34,6 +34,8 @@ func _process(delta):
 			shoot_cooldown = true
 			var sword_projectile_inst = sword_projectile.instance()
 			sword_projectile_inst.position = global_position
+			$Shoot.pitch_scale = rand_range(0.8, 1.2)
+			$Shoot.play(0.0)
 			get_parent().get_parent().add_child(sword_projectile_inst)
 			yield(get_tree().create_timer(0.3, false), "timeout")
 			shoot_cooldown = false

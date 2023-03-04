@@ -6,6 +6,7 @@ func _ready():
 
 
 func _switch_track(new_track : String):
+	volume_db = 0
 	Values.user_values["current_music"] = new_track
 	for i in range(20):
 		volume_db -= 1

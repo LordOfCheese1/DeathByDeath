@@ -40,5 +40,14 @@ func _process(delta):
 
 
 func swing_attack():
+	randomize()
+	$Swing.pitch_scale = rand_range(0.8, 1.2)
+	$Swing.play(0.0)
 	$Pivot.look_at(get_global_mouse_position())
 	$AnimationPlayer.play("Swing" + str(current_swing))
+
+
+func _on_Attackbox_on_attack():
+	randomize()
+	$Hit.pitch_scale = rand_range(0.8, 1.2)
+	$Hit.play(0.0)

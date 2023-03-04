@@ -1,13 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Prefabs/Entities/MagicSword/MagicSword.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Entities/Sword/Handle.png" type="Texture" id=2]
 [ext_resource path="res://Textures/Entities/Sword/Blade.png" type="Texture" id=3]
 [ext_resource path="res://Components/Collision/Attackbox/Attackbox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Components/Visuals/ParticleSpawner/ParticleSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Audio/SFX/SwordHit.wav" type="AudioStream" id=6]
+[ext_resource path="res://Audio/SFX/SwordSwing.wav" type="AudioStream" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 21.0238
+radius = 24.0
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -344,9 +346,18 @@ damage = 1
 ignore_player = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Attackbox"]
+position = Vector2( -2, 0 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 3 )
 anims/Swing0 = SubResource( 2 )
 anims/Swing1 = SubResource( 4 )
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Swing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[connection signal="on_attack" from="Pivot/Attackbox" to="." method="_on_Attackbox_on_attack"]

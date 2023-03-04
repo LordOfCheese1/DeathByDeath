@@ -19,6 +19,7 @@ var is_attacking = false
 var jumped = false
 var double_jumped = false
 var in_water = false
+var footstep_counter = 16
 
 
 func _ready():
@@ -72,9 +73,14 @@ func _physics_process(delta):
 	elif coyote_time <= 0 && !is_on_floor() && Values.user_values["rocket"] && !double_jumped && jumped:
 		if remember_jump > 0:
 			$ParticleSpawner._start()
-			velocity.y = rocket_velocity
 			if !in_water:
 				gravity = 300
+				velocity.y = rocket_velocity
+			else:
+				velocity.y = rocket_velocity / 3
+			randomize()
+			$DoubleJump.pitch_scale = rand_range(0.8, 1.2)
+			$DoubleJump.play(0.0)
 			double_jumped = true
 	
 	
@@ -109,6 +115,13 @@ func _physics_process(delta):
 	#all the attacks/abilities
 	if Input.is_action_just_pressed("attack") && !is_attacking:
 		attack()
+	
+	if velocity.x != 0 && is_on_floor():
+		footstep_counter -= 1
+		if footstep_counter <= 0:
+			$Footstep.pitch_scale = rand_range(0.8, 1.2)
+			$Footstep.play(0.0)
+			footstep_counter = 16
 
 
 func _process(delta):
@@ -129,6 +142,9 @@ func _process(delta):
 
 
 func jump():
+	randomize()
+	$Jump.pitch_scale = rand_range(0.8, 1.2)
+	$Jump.play(0.0)
 	if !is_attacking && !is_hit:
 		$AnimationPlayer.play("jump")
 	is_jumping = true

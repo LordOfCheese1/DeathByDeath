@@ -3,7 +3,7 @@ extends Node2D
 
 var previous_seg_pos = Vector2()
 var hunting_phase = 0
-var hunting_cooldown = 100
+var hunting_cooldown = 500
 var hit_multiplier = 1
 var gravity = 0.4
 
@@ -21,7 +21,7 @@ func _physics_process(delta):
 	if EnemyFunctions.distance(Values.player.position, $Head.global_position).x < 400 && EnemyFunctions.distance(Values.player.position, $Head.global_position).y < 400:
 		$Head.position += $Head.transform.x * 2
 		previous_seg_pos = $Head.global_position
-		var seg_multiplier = 2
+		var seg_multiplier = 0.6
 		for i in self.get_children():
 			if i.name != "Head" && (abs(previous_seg_pos.x - i.global_position.x) + abs(previous_seg_pos.y - i.global_position.y)) > 8:
 				i.global_position.x += (previous_seg_pos.x - i.global_position.x) / 3
@@ -30,7 +30,7 @@ func _physics_process(delta):
 				i.position.y += gravity * seg_multiplier
 				i.position.x += ($Head.position.x - i.position.x) / 64
 			previous_seg_pos = i.global_position
-			seg_multiplier -= 0.25
+			seg_multiplier -= 0.025
 	
 	if hunting_phase > 0:
 		hunting_phase -= 1

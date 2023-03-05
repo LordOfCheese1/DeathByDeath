@@ -20,11 +20,16 @@ func _on_SwordProjectile_body_entered(body):
 
 
 func destroy():
+	randomize()
+	$Hit.pitch_scale = rand_range(0.8, 1.2)
+	$Hit.play(0.0)
 	if !is_dead:
 		is_dead = true
 		speed = 0
 		$AnimationPlayer.play("Death")
-		yield(get_tree().create_timer(0.2), "timeout")
+		yield(get_tree().create_timer(0.1, false), "timeout")
+		$Attackbox.call_deferred("free")
+		yield(get_tree().create_timer(0.23, false), "timeout")
 		call_deferred("free")
 
 

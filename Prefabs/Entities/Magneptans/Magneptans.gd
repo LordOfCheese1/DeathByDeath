@@ -43,6 +43,9 @@ func _process(delta):
 
 
 func _on_Hitbox_on_hit():
+	randomize()
+	$Hit.pitch_scale = rand_range(0.8, 1.2)
+	$Hit.play(0.0)
 	if !is_dead:
 		$AnimationPlayer.play("Hit")
 
@@ -64,12 +67,18 @@ func _shoot_stuff():
 		baby_spider_inst.position = position
 		baby_spider_inst.velocity.y = -100
 		get_parent().add_child(baby_spider_inst)
+		randomize()
+		$Spawn.pitch_scale = rand_range(0.8, 1.2)
+		$Spawn.play(0.0)
 		yield(get_tree().create_timer(0.8, false), "timeout")
 	for i in range(ceil((46 - $HealthManager.health) / 10)):
+		randomize()
+		$Spawn.pitch_scale = rand_range(0.8, 1.2)
+		$Spawn.play(0.0)
 		var webshooter_inst = webshooter.instance()
 		webshooter_inst.position = position
 		get_parent().add_child(webshooter_inst)
-		yield(get_tree().create_timer(0.2, false), "timeout")
+		yield(get_tree().create_timer(0.3, false), "timeout")
 	_hitting_phase()
 
 

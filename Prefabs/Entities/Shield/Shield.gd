@@ -18,6 +18,9 @@ func _process(delta):
 
 
 func _on_Hitbox_on_hit():
+	randomize()
+	$Hit.pitch_scale = rand_range(0.8, 1.2)
+	$Hit.play(0.0)
 	$AnimationPlayer.play("Block")
 	$Explosion.emitting = true
 

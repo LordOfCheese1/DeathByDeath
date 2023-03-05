@@ -56,7 +56,7 @@ func _physics_process(delta):
 	else:
 		velocity.x = 0
 	
-	if velocity.x != 0 && is_on_floor():
+	if velocity.x > 10 or velocity.x < -10 && is_on_floor() && !is_hit:
 		footstep_counter -= 1
 		if footstep_counter <= 0:
 			$Footstep.pitch_scale = rand_range(0.8, 1.2)

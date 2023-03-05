@@ -66,3 +66,22 @@ func _on_CeilingDetector_body_entered(body):
 func _on_CeilingDetector_body_exited(body):
 	if body.get_class() == "TileMap":
 		ceiling_multiplier = 1
+
+
+func _on_Hitbox_on_hit():
+	if Values.player.position.x - position.x > 0:
+		velocity.x -= 20
+	else:
+		velocity.x += 20
+	velocity.y = 0
+
+
+func _on_HealthManager_health_depleted():
+	velocity.y = -400
+	velocity.x = rand_range(-100, 100)
+	gravity = 600
+	$CollisionShape2D.call_deferred("free")
+	$Visuals/Body/Claw/FloorDetectorR.call_deferred("free")
+	$Visuals/Body/Claw2/FloorDetectorL.call_deferred("free")
+	yield(get_tree().create_timer(5, false), "timeout")
+	call_deferred("free")

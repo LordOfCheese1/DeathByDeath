@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Prefabs/Entities/ClawMonster/ClawMonster.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Entities/ClawMonster/Body.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Prefabs/Entities/ClawMonster/ClawMonsterClaw.gd" type="Script" id=5]
 [ext_resource path="res://Audio/SFX/SpiderTap.wav" type="AudioStream" id=6]
 [ext_resource path="res://Components/Collision/Hitbox/Hitbox.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Components/Collision/Attackbox/Attackbox.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Components/Managers/HealthManager/HealthManager.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 5.0
@@ -19,6 +21,12 @@ radius = 11.0454
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 8, 19 )
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 15.0333
 
 [node name="ClawMonster" type="KinematicBody2D"]
 collision_layer = 2
@@ -85,6 +93,20 @@ position = Vector2( 0, -25 )
 shape = SubResource( 4 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 7 )]
+health_manager = NodePath("../HealthManager")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 5 )
+
+[node name="Attackbox" parent="." instance=ExtResource( 8 )]
+ignore = NodePath("../Hitbox")
+damage = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attackbox"]
+shape = SubResource( 6 )
+
+[node name="HealthManager" parent="." instance=ExtResource( 9 )]
+max_health = 62
 
 [connection signal="clawed" from="Visuals/Body/Claw" to="." method="_on_Claw_clawed"]
 [connection signal="body_entered" from="Visuals/Body/Claw/FloorDetectorR" to="Visuals/Body/Claw" method="_on_FloorDetectorR_body_entered"]
@@ -92,3 +114,5 @@ shape = SubResource( 4 )
 [connection signal="body_entered" from="Visuals/Body/Claw2/FloorDetectorL" to="Visuals/Body/Claw2" method="_on_FloorDetectorL_body_entered"]
 [connection signal="body_entered" from="CeilingDetector" to="." method="_on_CeilingDetector_body_entered"]
 [connection signal="body_exited" from="CeilingDetector" to="." method="_on_CeilingDetector_body_exited"]
+[connection signal="on_hit" from="Hitbox" to="." method="_on_Hitbox_on_hit"]
+[connection signal="health_depleted" from="HealthManager" to="." method="_on_HealthManager_health_depleted"]

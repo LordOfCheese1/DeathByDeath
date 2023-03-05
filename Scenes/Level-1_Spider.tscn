@@ -78,7 +78,7 @@ position = Vector2( 793, -235 )
 position = Vector2( 1118, 181 )
 
 [node name="Pauluculmus3" parent="Environment/Enemies" instance=ExtResource( 6 )]
-position = Vector2( 273, -443 )
+position = Vector2( 110, -236 )
 
 [node name="Magneptans" parent="Environment/Enemies" instance=ExtResource( 7 )]
 position = Vector2( 1440, -500 )
@@ -104,6 +104,15 @@ scene = "res://Scenes/Level-2_Graveyard.tscn"
 switch_track_to = "res://Audio/Music/Lacrimosa.mp3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TransitionManager2"]
+shape = SubResource( 1 )
+
+[node name="TransitionManager3" parent="Environment" instance=ExtResource( 4 )]
+position = Vector2( 319, -448 )
+player_pos = Vector2( 8, 180 )
+scene = "res://Scenes/Level-7_Worm.tscn"
+switch_track_to = "res://Audio/Music/GnosienneNo3.mp3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TransitionManager3"]
 shape = SubResource( 1 )
 
 [node name="HealingPedestal" parent="Environment" instance=ExtResource( 8 )]
@@ -265,7 +274,7 @@ texture = ExtResource( 25 )
 flip_h = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 45, 130 )
+position = Vector2( 48, 125 )
 canvaslayer = NodePath("../Interface")
 
 [node name="Camera" parent="." instance=ExtResource( 3 )]

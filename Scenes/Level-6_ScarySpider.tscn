@@ -33,7 +33,7 @@ tile_data = PoolIntArray( -1, 4, 0, -65536, 4, 1, -65535, 4, 1, -65534, 4, 1, -6
 position = Vector2( 959, 800 )
 player_pos = Vector2( 648, -28 )
 scene = "res://Scenes/Level-4_Swamp.tscn"
-switch_track_to = "res://Audio/Music/Introitus.mp3"
+switch_track_to = "res://Audio/Music/Lacrimosa.mp3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TransitionManager"]
 shape = SubResource( 1 )
@@ -50,7 +50,7 @@ shape = SubResource( 1 )
 [node name="Entities" type="Node2D" parent="Environment"]
 
 [node name="ClawMonster" parent="Environment/Entities" instance=ExtResource( 8 )]
-position = Vector2( 485, 349 )
+position = Vector2( 137, 572 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1592, 388 )

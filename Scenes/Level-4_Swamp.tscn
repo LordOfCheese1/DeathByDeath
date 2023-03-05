@@ -156,7 +156,7 @@ position = Vector2( 430, 173 )
 position = Vector2( 818, 368 )
 
 [node name="BigMaggot" parent="Environment/Enemies" instance=ExtResource( 9 )]
-position = Vector2( 1544, 399 )
+position = Vector2( 1442, 400 )
 
 [node name="WindyBush" parent="Environment" instance=ExtResource( 18 )]
 position = Vector2( 271, 16 )

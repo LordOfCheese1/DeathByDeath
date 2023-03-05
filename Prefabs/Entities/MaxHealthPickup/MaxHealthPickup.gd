@@ -9,6 +9,8 @@ func _ready():
 
 func _on_MaxHealthPickup_body_entered(body):
 	if body.is_in_group("player"):
+		$Collect.play(0.0)
+		$CollisionShape2D.call_deferred("free")
 		$AnimationPlayer.play("Collect")
 		yield(get_tree().create_timer(0.5, false), "timeout")
 		Values.user_values["player_max_health"] += 5

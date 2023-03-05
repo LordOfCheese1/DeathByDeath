@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Textures/Environment/MaxHealthPickup.png" type="Texture" id=1]
 [ext_resource path="res://Prefabs/Entities/MaxHealthPickup/MaxHealthPickup.gd" type="Script" id=2]
+[ext_resource path="res://Audio/SFX/HealthUp.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 6.0
@@ -116,5 +117,8 @@ autoplay = "Idle"
 anims/Collect = SubResource( 2 )
 anims/Idle = SubResource( 4 )
 anims/RESET = SubResource( 3 )
+
+[node name="Collect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_MaxHealthPickup_body_entered"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Textures/Environment/Gate.png" type="Texture" id=1]
 [ext_resource path="res://Prefabs/Environment/EntityGate/EntityGate.gd" type="Script" id=2]
+[ext_resource path="res://Audio/SFX/GateClose.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5, 24 )
@@ -117,3 +118,13 @@ disabled = true
 anims/Close = SubResource( 3 )
 anims/Open = SubResource( 1 )
 anims/RESET = SubResource( 4 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 0, 1.43051e-06 )
+scale = Vector2( 0.5, 2.4 )
+
+[node name="Close" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[connection signal="screen_entered" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_exited"]

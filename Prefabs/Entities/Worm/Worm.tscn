@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Prefabs/Entities/Worm/Worm.gd" type="Script" id=1]
 [ext_resource path="res://Components/Collision/Attackbox/Attackbox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Textures/Entities/Worm/Head.png" type="Texture" id=3]
 [ext_resource path="res://Textures/Entities/Worm/Segment.png" type="Texture" id=4]
+[ext_resource path="res://Audio/SFX/WormRoar.wav" type="AudioStream" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 6.08276
@@ -104,6 +105,9 @@ texture = ExtResource( 4 )
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
 position = Vector2( 1, -10 )
 scale = Vector2( 8.6, 8.5 )
+
+[node name="Roar" type="AudioStreamPlayer" parent="VisibilityEnabler2D"]
+stream = ExtResource( 5 )
 
 [connection signal="on_attack" from="Head" to="." method="_on_Head_on_attack"]
 [connection signal="screen_entered" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_entered"]

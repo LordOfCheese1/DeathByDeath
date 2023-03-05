@@ -48,6 +48,8 @@ func _physics_process(delta):
 
 
 func flap():
+	$Flap.pitch_scale = rand_range(0.8, 1.2)
+	$Flap.play(0.0)
 	$AnimationPlayer.play("Flap")
 	velocity.y = -100
 

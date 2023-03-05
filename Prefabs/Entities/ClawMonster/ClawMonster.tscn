@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Prefabs/Entities/ClawMonster/ClawMonster.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Entities/ClawMonster/Body.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Textures/Entities/ClawMonster/Claw.png" type="Texture" id=4]
 [ext_resource path="res://Prefabs/Entities/ClawMonster/ClawMonsterClaw.gd" type="Script" id=5]
 [ext_resource path="res://Audio/SFX/SpiderTap.wav" type="AudioStream" id=6]
+[ext_resource path="res://Components/Collision/Hitbox/Hitbox.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 5.0
@@ -82,6 +83,8 @@ shape = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CeilingDetector"]
 position = Vector2( 0, -25 )
 shape = SubResource( 4 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 7 )]
 
 [connection signal="clawed" from="Visuals/Body/Claw" to="." method="_on_Claw_clawed"]
 [connection signal="body_entered" from="Visuals/Body/Claw/FloorDetectorR" to="Visuals/Body/Claw" method="_on_FloorDetectorR_body_entered"]

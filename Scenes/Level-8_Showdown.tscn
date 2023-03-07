@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Prefabs/Environment/MainTilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Textures/Environment/Background.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Prefabs/Entities/Death/Death.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/Player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Components/User Interface/Interface/Interface.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Components/User Interface/Camera/Camera.tscn" type="PackedScene" id=8]
 
 [node name="Level-8_Showdown" type="Node2D"]
 
@@ -36,9 +37,14 @@ from_left = true
 [node name="Entities" type="Node2D" parent="Environment"]
 
 [node name="Death" parent="Environment/Entities" instance=ExtResource( 5 )]
-position = Vector2( 199, -327 )
+position = Vector2( 195, -282 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
-position = Vector2( 164, 171 )
+position = Vector2( -72, -239 )
+canvaslayer = NodePath("../Interface")
 
 [node name="Interface" parent="." instance=ExtResource( 7 )]
+
+[node name="Camera" parent="." instance=ExtResource( 8 )]
+position = Vector2( 160, 104 )
+follow = NodePath("../Player")

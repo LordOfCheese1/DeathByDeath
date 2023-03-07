@@ -4,7 +4,7 @@ extends Node2D
 var save_file = File.new()
 var player
 var is_loading_in = false
-var load_on_start = false
+var load_on_start = true
 
 
 func _ready():

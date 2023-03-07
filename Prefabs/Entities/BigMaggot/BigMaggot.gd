@@ -25,7 +25,7 @@ func _physics_process(delta):
 	if velocity.y < gravity:
 		velocity.y += gravity * delta
 	
-	if !spotted_player && EnemyFunctions.distance(Values.player.position, position).x < 200 && EnemyFunctions.distance(Values.player.position, position).y < 128:
+	if !spotted_player && EnemyFunctions.distance(Values.player.position, position).x < 128 && EnemyFunctions.distance(Values.player.position, position).y < 128:
 		spotted_player = true
 		MusicManager._switch_track("res://Audio/Music/VerdiDiesIrae.mp3")
 	

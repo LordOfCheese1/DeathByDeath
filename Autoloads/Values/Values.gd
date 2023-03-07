@@ -4,12 +4,14 @@ extends Node2D
 var save_file = File.new()
 var player
 var is_loading_in = false
+var load_on_start = false
 
 
 func _ready():
-	load_game()
-	get_tree().change_scene(user_values["current_scene"])
-	is_loading_in = true
+	if load_on_start:
+		load_game()
+		get_tree().change_scene(user_values["current_scene"])
+		is_loading_in = true
 
 
 var user_values = {

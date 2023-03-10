@@ -48,9 +48,9 @@ func _on_Hitbox_on_hit():
 
 
 func _on_HealthManager_health_depleted():
+	MusicManager._switch_track("res://Audio/Music/GosienneNo1.mp3")
 	Values.user_values["defeated_bosses"].append(name)
 	Values.save_game()
-	MusicManager._switch_track("res://Audio/Music/GosienneNo1.mp3")
 	is_dead = true
 	$AnimationPlayer.play("Death")
 	yield(get_tree().create_timer(0.9, false), "timeout")

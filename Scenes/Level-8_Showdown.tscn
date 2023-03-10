@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Prefabs/Environment/MainTilemap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Textures/Environment/Background.png" type="Texture" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://Prefabs/Player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Components/User Interface/Interface/Interface.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Components/User Interface/Camera/Camera.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Components/Managers/TransitionManager/TransitionManager.tscn" type="PackedScene" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1, 16 )
 
 [node name="Level-8_Showdown" type="Node2D"]
 
@@ -39,8 +43,26 @@ from_left = true
 [node name="Death" parent="Environment/Entities" instance=ExtResource( 5 )]
 position = Vector2( 195, -282 )
 
+[node name="TransitionManager" parent="Environment" instance=ExtResource( 9 )]
+position = Vector2( 319, 160 )
+player_pos = Vector2( 8, -284 )
+scene = "res://Scenes/Level-7_Worm.tscn"
+switch_track_to = "res://Audio/Music/GnosienneNo3.mp3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TransitionManager"]
+shape = SubResource( 1 )
+
+[node name="TransitionManager2" parent="Environment" instance=ExtResource( 9 )]
+position = Vector2( 1, 160 )
+player_pos = Vector2( 312, -252 )
+scene = "res://Scenes/Level-0_Start.tscn"
+switch_track_to = "res://Audio/Music/GosienneNo1.mp3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TransitionManager2"]
+shape = SubResource( 1 )
+
 [node name="Player" parent="." instance=ExtResource( 6 )]
-position = Vector2( -72, -239 )
+position = Vector2( 8, 164 )
 canvaslayer = NodePath("../Interface")
 
 [node name="Interface" parent="." instance=ExtResource( 7 )]

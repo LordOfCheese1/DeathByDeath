@@ -54,7 +54,8 @@ shape = SubResource( 1 )
 
 [node name="TransitionManager3" parent="Environment" instance=ExtResource( 8 )]
 position = Vector2( 1, -288 )
-player_pos = Vector2( 8, 164 )
+player_pos = Vector2( 312, 164 )
+scene = "res://Scenes/Level-8_Showdown.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TransitionManager3"]
 shape = SubResource( 1 )
@@ -63,7 +64,7 @@ shape = SubResource( 1 )
 position = Vector2( 1216, 94 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 100, 142 )
+position = Vector2( 8, -284 )
 canvaslayer = NodePath("../Interface")
 
 [node name="Light2D" type="Light2D" parent="Player"]

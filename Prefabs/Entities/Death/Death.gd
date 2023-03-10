@@ -132,7 +132,7 @@ func _physics_process(delta):
 						yield(get_tree().create_timer(0.1, false), "timeout")
 			
 	else: #spot player
-		if EnemyFunctions.distance(Values.player.position, position).x < 128:
+		if EnemyFunctions.distance(Values.player.position, position).x < 128 && EnemyFunctions.distance(Values.player.position, position).y < 90:
 			spotted_player = true
 			MusicManager._switch_track("res://Audio/Music/Kyrie.mp3")
 

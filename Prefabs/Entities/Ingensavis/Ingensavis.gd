@@ -79,7 +79,7 @@ func _on_Hitbox_on_hit():
 		$AnimationPlayer.play("Hit")
 	if !spotted_player:
 		spotted_player = true
-		MusicManager._switch_track("res://Audio/Music/DomineJesu.mp3")
+		MusicManager._switch_track("res://Audio/Music/Lacrimosa.mp3")
 
 
 func _on_HealthManager_health_depleted():

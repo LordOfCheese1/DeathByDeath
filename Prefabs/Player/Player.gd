@@ -37,6 +37,7 @@ func _ready():
 
 
 func _physics_process(delta):
+	Values.player_look_dir = -$Visuals.scale.x
 	velocity.x = stepify(velocity.x, speed / accel)
 	
 	#velocity stuff

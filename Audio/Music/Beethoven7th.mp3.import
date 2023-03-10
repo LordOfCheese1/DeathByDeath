@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Beethoven7th.mp3-6a7ad6f4d1e4b2509b2f1f64a3437bad.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Beethoven7th.mp3"
+dest_files=[ "res://.import/Beethoven7th.mp3-6a7ad6f4d1e4b2509b2f1f64a3437bad.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

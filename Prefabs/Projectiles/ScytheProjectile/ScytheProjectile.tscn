@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Textures/Entities/Death/Scythe.png" type="Texture" id=1]
+[ext_resource path="res://Prefabs/Projectiles/ScytheProjectile/ScytheProjectile.gd" type="Script" id=2]
+[ext_resource path="res://Components/Collision/Attackbox/Attackbox.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 20.025
+
+[node name="ScytheProjectile" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 6, 0 )
+
+[node name="Attackbox" parent="." instance=ExtResource( 3 )]
+ignore = NodePath("..")
+damage = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attackbox"]
+shape = SubResource( 1 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( -4.76837e-07, -1.43051e-06 )
+scale = Vector2( 2.1, 2.1 )
+
+[connection signal="screen_exited" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_exited"]

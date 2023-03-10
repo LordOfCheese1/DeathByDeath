@@ -4,7 +4,8 @@ extends Node2D
 var save_file = File.new()
 var player
 var is_loading_in = false
-var load_on_start = true
+var load_on_start = false
+var player_look_dir = 0
 
 
 func _ready():
@@ -24,7 +25,7 @@ var user_values = {
 	"collected_healthups" : [],
 	"defeated_bosses" : [],
 	"beaten_game" : false,
-	"current_scene" : "res://Scenes/Level-0_Start.tscn",
+	"current_scene" : "res://Scenes/MainMenu.tscn",
 	"current_music" : "res://Audio/Music/GosienneNo1.mp3"
 }
 

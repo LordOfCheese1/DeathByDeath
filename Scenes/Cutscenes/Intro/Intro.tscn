@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Textures/Entities/Player/Player.png" type="Texture" id=4]
+[ext_resource path="res://Textures/Environment/Background.png" type="Texture" id=5]
+[ext_resource path="res://Prefabs/Environment/MainTilemap.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Components/Managers/TextManager/TextManager.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Cutscenes/Intro/Intro.gd" type="Script" id=8]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Transition:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.196078, 0.160784, 0.278431, 0 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "Scroll"
+length = 18.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/TextManager:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 16 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 12, 204 ), Vector2( 12, -112 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("CanvasLayer/TextManager")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "THERE_ONCE_WAS_A_KNIGHT.,__,__,HE_WAS_LUSTING_FOR_POWER.,__,__,SO_HE_ASKED_DEATH_FOR_HIS_SCYTHE.,__,__,DEATH_WAS_NOT_PLEASED_WITH_THIS_HOWEVER.,__,__,HE_SENT_THE_KNIGHT_TO_HIS_REALM_FULL_OF_HORRORS.", 0.05 ],
+"method": "change_text"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Transition:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 16, 18 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.196078, 0.160784, 0.278431, 1 ), Color( 0.196078, 0.160784, 0.278431, 0 ), Color( 0.196078, 0.160784, 0.278431, 0 ), Color( 0.196078, 0.160784, 0.278431, 1 ) ]
+}
+
+[node name="Intro" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Background" type="Sprite" parent="."]
+modulate = Color( 0.196078, 0.160784, 0.278431, 1 )
+position = Vector2( 160, 104 )
+texture = ExtResource( 5 )
+
+[node name="Player" type="Sprite" parent="."]
+position = Vector2( 91, 148 )
+texture = ExtResource( 4 )
+flip_h = true
+hframes = 7
+
+[node name="TileMap" parent="." instance=ExtResource( 6 )]
+tile_data = PoolIntArray( -65522, 2, 0, -65521, 2, 1, -65520, 2, 1, -65519, 2, 1, -65518, 2, 1, -65517, 2, 2, 14, 2, 131072, 15, 2, 65542, 16, 2, 65537, 17, 2, 65537, 18, 2, 65537, 19, 2, 131077, 20, 2, 2, 65551, 2, 131072, 65552, 2, 131073, 65553, 2, 65542, 65554, 2, 65537, 65555, 2, 65537, 65556, 2, 131077, 65557, 2, 2, 131089, 2, 65536, 131090, 2, 65537, 131091, 2, 65537, 131092, 2, 65537, 131093, 2, 65538, 196625, 2, 131072, 196626, 2, 65542, 196627, 2, 65537, 196628, 2, 65537, 196629, 2, 65538, 262162, 2, 65536, 262163, 2, 65537, 262164, 2, 65537, 262165, 2, 65538, 327698, 2, 65536, 327699, 2, 65537, 327700, 2, 65537, 327701, 2, 65538, 458751, 2, 0, 393216, 2, 2, 393234, 2, 65536, 393235, 2, 65537, 393236, 2, 65537, 393237, 2, 65538, 524287, 2, 65536, 458752, 2, 65538, 458770, 2, 65536, 458771, 2, 65537, 458772, 2, 65537, 458773, 2, 65538, 589823, 2, 65536, 524288, 2, 131077, 524289, 2, 2, 524306, 2, 65536, 524307, 2, 65537, 524308, 2, 65537, 524309, 2, 65538, 655359, 2, 65536, 589824, 2, 65537, 589825, 2, 131077, 589826, 2, 2, 589842, 2, 65536, 589843, 2, 65537, 589844, 2, 65537, 589845, 2, 65538, 720895, 2, 65536, 655360, 2, 65537, 655361, 2, 65537, 655362, 2, 131077, 655363, 2, 1, 655364, 2, 1, 655365, 2, 1, 655366, 2, 1, 655367, 2, 1, 655368, 2, 1, 655369, 2, 1, 655370, 2, 1, 655371, 2, 1, 655372, 2, 1, 655373, 2, 1, 655374, 2, 1, 655375, 2, 1, 655376, 2, 1, 655377, 2, 1, 655378, 2, 131078, 655379, 2, 65537, 655380, 2, 65537, 655381, 2, 65538, 786431, 2, 65536, 720896, 2, 65537, 720897, 2, 65537, 720898, 2, 65537, 720899, 2, 65537, 720900, 2, 65537, 720901, 2, 65537, 720902, 2, 65537, 720903, 2, 65537, 720904, 2, 65537, 720905, 2, 65537, 720906, 2, 65537, 720907, 2, 65537, 720908, 2, 65537, 720909, 2, 65537, 720910, 2, 65537, 720911, 2, 65537, 720912, 2, 65537, 720913, 2, 65537, 720914, 2, 65537, 720915, 2, 65537, 720916, 2, 65537, 720917, 2, 65538, 851967, 2, 65536, 786432, 2, 65537, 786433, 2, 65537, 786434, 2, 65537, 786435, 2, 65537, 786436, 2, 65537, 786437, 2, 65537, 786438, 2, 65537, 786439, 2, 65537, 786440, 2, 65537, 786441, 2, 65537, 786442, 2, 65537, 786443, 2, 65537, 786444, 2, 65537, 786445, 2, 65537, 786446, 2, 65537, 786447, 2, 65537, 786448, 2, 65537, 786449, 2, 65537, 786450, 2, 65537, 786451, 2, 65537, 786452, 2, 65537, 786453, 2, 65538, 917503, 2, 131072, 851968, 2, 131073, 851969, 2, 131073, 851970, 2, 131073, 851971, 2, 131073, 851972, 2, 131073, 851973, 2, 131073, 851974, 2, 131073, 851975, 2, 131073, 851976, 2, 131073, 851977, 2, 131073, 851978, 2, 131073, 851979, 2, 131073, 851980, 2, 131073, 851981, 2, 131073, 851982, 2, 131073, 851983, 2, 131073, 851984, 2, 131073, 851985, 2, 131073, 851986, 2, 131073, 851987, 2, 131073, 851988, 2, 131073, 851989, 2, 131074 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Scroll"
+anims/RESET = SubResource( 2 )
+anims/Scroll = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Transition" type="Sprite" parent="CanvasLayer"]
+modulate = Color( 0.196078, 0.160784, 0.278431, 0 )
+position = Vector2( 160, 104 )
+texture = ExtResource( 5 )
+
+[node name="TextManager" parent="CanvasLayer" instance=ExtResource( 7 )]
+position = Vector2( 12, 204 )
+z_index = 6
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.576471, 0.576471, 0.576471, 1 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

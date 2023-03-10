@@ -20,3 +20,10 @@ func _on_MuteMusic_pressed_ok():
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
 	else:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
+
+
+func _on_Fullscreen_pressed_ok():
+	if !OS.window_fullscreen:
+		OS.window_fullscreen = true
+	else:
+		OS.window_fullscreen = false

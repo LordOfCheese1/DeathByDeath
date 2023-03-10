@@ -13,7 +13,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	if EnemyFunctions.distance(get_global_mouse_position(), position).x < button_size.x && EnemyFunctions.distance(get_global_mouse_position(), position).y < button_size.y:
+	if EnemyFunctions.distance(get_global_mouse_position(), position).x < button_size.x / 1.5 && EnemyFunctions.distance(get_global_mouse_position(), position).y < button_size.y / 1.5:
 		$Tween.interpolate_property($Sprite, "scale", $Sprite.scale, Vector2(1.2, 1.2), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		$Tween.start()
 		mouse_is_on = true

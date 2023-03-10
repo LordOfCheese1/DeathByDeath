@@ -12,10 +12,10 @@ func _ready():
 
 
 func _process(delta):
-	if !faded_out && EnemyFunctions.distance(Values.player.position, position).x < 128:
-		faded_out = true
-		$AnimationPlayer.play("FadeOut")
-	faded_out = true
+	pass#if !faded_out && EnemyFunctions.distance(Values.player.position, position).x < 128:
+	#	faded_out = true
+	#	$AnimationPlayer.play("FadeOut")
+	#faded_out = true
 
 
 func _on_TransitionManager_body_entered(body):

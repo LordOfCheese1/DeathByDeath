@@ -36,10 +36,7 @@ func _physics_process(delta):
 
 func _process(delta):
 	$Visuals/Body/Eye/Pupil.look_at(Values.player.position)
-	for i in $Visuals/Body.get_children():
-		body_rot_sum += i.rotation_degrees
-	body_rot_sum = body_rot_sum / len($Visuals/Body.get_children()) / 2
-	$Visuals/Body.rotation_degrees = body_rot_sum
+	$Visuals/Body.rotation_degrees = -$Visuals/Body/Eye/Pupil.transform.x.x * 20
 
 
 func _on_Hitbox_on_hit():

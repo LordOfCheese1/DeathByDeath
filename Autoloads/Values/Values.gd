@@ -4,18 +4,15 @@ extends Node2D
 var save_file = File.new()
 var player
 var is_loading_in = false
-var load_on_start = false
 var player_look_dir = 0
 
 
 func _ready():
-	if load_on_start:
-		load_game()
-		get_tree().change_scene(user_values["current_scene"])
-		is_loading_in = true
+	load_game()
 
 
 var user_values = {
+	"load_on_start" : false,
 	"bow" : false,
 	"rocket" : false,
 	"player_health" : 15,
@@ -25,7 +22,7 @@ var user_values = {
 	"collected_healthups" : [],
 	"defeated_bosses" : [],
 	"beaten_game" : false,
-	"current_scene" : "res://Scenes/MainMenu.tscn",
+	"current_scene" : "res://Scenes/Cutscenes/Intro/Intro.tscn",
 	"current_music" : "res://Audio/Music/GosienneNo1.mp3"
 }
 
@@ -33,8 +30,9 @@ var user_values = {
 func _process(delta):
 	if is_loading_in:
 		is_loading_in = false
-		player.position.x = user_values["player_x"]
-		player.position.y = user_values["player_y"]
+		if player != null:
+			player.position.x = user_values["player_x"]
+			player.position.y = user_values["player_y"]
 
 
 func save_game():
@@ -50,6 +48,10 @@ func load_game():
 	if parse_json(save_file.get_as_text()) != null:
 		user_values = parse_json(save_file.get_as_text())
 	save_file.close()
+	if user_values["load_on_start"] == true:
+		print("E")
+		get_tree().change_scene(user_values["current_scene"])
+		is_loading_in = true
 
 
 func delete_file():

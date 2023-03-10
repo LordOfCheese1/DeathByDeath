@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/MassKyrie.mp3-42fd95e22881fe3683b83db6b1bd74c6.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/MassKyrie.mp3"
+dest_files=[ "res://.import/MassKyrie.mp3-42fd95e22881fe3683b83db6b1bd74c6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

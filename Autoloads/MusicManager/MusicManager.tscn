@@ -5,3 +5,5 @@
 [node name="MusicManager" type="AudioStreamPlayer"]
 pause_mode = 2
 script = ExtResource( 1 )
+
+[connection signal="finished" from="." to="." method="_on_MusicManager_finished"]

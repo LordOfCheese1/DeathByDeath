@@ -9,4 +9,3 @@ func _ready():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Scroll":
 		get_tree().change_scene("res://Scenes/Level-0_Start.tscn")
-		Values.load_game()

@@ -8,7 +8,7 @@ var player_look_dir = 0
 
 
 func _ready():
-	load_game()
+	pass#load_game()
 
 
 var user_values = {
@@ -49,9 +49,9 @@ func load_game():
 		user_values = parse_json(save_file.get_as_text())
 	save_file.close()
 	if user_values["load_on_start"] == true:
-		print("E")
 		get_tree().change_scene(user_values["current_scene"])
 		is_loading_in = true
+		MusicManager._switch_track(user_values["current_music"])
 
 
 func delete_file():

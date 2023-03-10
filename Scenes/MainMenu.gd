@@ -2,7 +2,8 @@ extends Node2D
 
 
 func _ready():
-	MusicManager._switch_track("res://Audio/Music/MassKyrie.mp3")
+	if !Values.user_values["load_on_start"]:
+		MusicManager._switch_track("res://Audio/Music/MassKyrie.mp3")
 
 
 func _on_Play_pressed_ok():
@@ -11,7 +12,7 @@ func _on_Play_pressed_ok():
 
 
 func _on_DeleteSave_pressed_ok():
-	pass # Replace with function body.
+	Values.delete_file()
 
 
 func _on_MuteMusic_pressed_ok():

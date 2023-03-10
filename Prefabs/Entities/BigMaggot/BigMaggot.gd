@@ -60,7 +60,7 @@ func shoot():
 				acidspit_inst.direction = $LookAt.transform.x
 				get_parent().add_child(acidspit_inst)
 				yield(get_tree().create_timer(0.05, false), "timeout")
-		shoot_cooldown = ceil($HealthManager.health / 4)
+		shoot_cooldown = ceil($HealthManager.health / 4) + 2
 		print(str(shoot_cooldown) + " " + str($HealthManager.health))
 	shoot_cooldown -= 1
 

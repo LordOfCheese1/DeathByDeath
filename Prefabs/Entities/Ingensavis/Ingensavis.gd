@@ -83,7 +83,7 @@ func _on_Hitbox_on_hit():
 
 
 func _on_HealthManager_health_depleted():
-	MusicManager._switch_track("res://Audio/Music/Introitus.mp3")
+	MusicManager._switch_track("res://Audio/Music/Lacrimosa.mp3")
 	Values.user_values["defeated_bosses"].append(name)
 	Values.save_game()
 	is_dead = true

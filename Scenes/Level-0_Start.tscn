@@ -135,6 +135,7 @@ position = Vector2( -524, 398 )
 position = Vector2( 319, -256 )
 player_pos = Vector2( 8, 164 )
 scene = "res://Scenes/Level-8_Showdown.tscn"
+switch_track_to = "res://Audio/Music/Introitus.mp3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/TransitionManager3"]
 shape = SubResource( 2 )

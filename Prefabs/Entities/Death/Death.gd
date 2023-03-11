@@ -257,7 +257,6 @@ func death():
 	for i in 10:
 		MusicManager.pitch_scale -= 0.05
 		yield(get_tree().create_timer(0.01, false), "timeout")
-	
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Textures/Entities/Player/Player.png" type="Texture" id=1]
 [ext_resource path="res://Prefabs/Player/Player.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Audio/SFX/DoubleJump.wav" type="AudioStream" id=9]
 [ext_resource path="res://Audio/SFX/PlayerHit.wav" type="AudioStream" id=10]
 [ext_resource path="res://Audio/SFX/WhiteNoise.wav" type="AudioStream" id=11]
+[ext_resource path="res://Prefabs/User Interface/PauseMenu/PauseMenu.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 9.5 )
@@ -375,6 +376,9 @@ autoplay = "FadeOut"
 anims/FadeIn = SubResource( 12 )
 anims/FadeOut = SubResource( 10 )
 anims/RESET = SubResource( 11 )
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 12 )]
+z_index = 1
 
 [connection signal="on_hit" from="Hitbox" to="." method="_on_Hitbox_on_hit"]
 [connection signal="area_entered" from="WaterDetector" to="." method="_on_WaterDetector_area_entered"]

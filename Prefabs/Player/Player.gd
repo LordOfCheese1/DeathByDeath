@@ -31,7 +31,7 @@ func _ready():
 	$HealthManager.health = Values.user_values["player_health"]
 	
 	var health_interface_inst = HealthInterface.instance()
-	get_node(canvaslayer).add_child(health_interface_inst)
+	$CanvasLayer.add_child(health_interface_inst)
 	health_path = health_interface_inst
 	health_path.update()
 

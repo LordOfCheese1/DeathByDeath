@@ -167,6 +167,9 @@ func _on_Hitbox_on_hit():
 	health_path.update()
 	
 	randomize()
+	$Hit.pitch_scale = rand_range(0.9, 1.1)
+	$Hit.play()
+	$WhiteNoise.play()
 	is_hit = true
 	$AnimationPlayer.play("Hit")
 	var multiplier = [1,-1]

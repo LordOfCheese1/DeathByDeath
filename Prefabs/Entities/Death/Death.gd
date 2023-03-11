@@ -264,5 +264,5 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Death":
 		is_dead = false
 		Engine.time_scale = 1
-		MusicManager._switch_track("res://Audio/Music/Beethoven7th.mp3")
+		MusicManager._switch_track("res://Audio/Music/Beethoven7th.mp3", false)
 		get_tree().change_scene("res://Scenes/Credits.tscn")

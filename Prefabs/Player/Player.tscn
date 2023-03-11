@@ -361,6 +361,7 @@ stream = ExtResource( 10 )
 
 [node name="WhiteNoise" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+volume_db = -12.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

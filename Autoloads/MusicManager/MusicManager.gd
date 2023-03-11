@@ -5,9 +5,10 @@ func _ready():
 	pass
 
 
-func _switch_track(new_track : String):
+func _switch_track(new_track : String, save_as_new = true):
 	volume_db = 0
-	Values.user_values["current_music"] = new_track
+	if save_as_new:
+		Values.user_values["current_music"] = new_track
 	for i in range(20):
 		volume_db -= 1
 		yield(get_tree().create_timer(0.02), "timeout")

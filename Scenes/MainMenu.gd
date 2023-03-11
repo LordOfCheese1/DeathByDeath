@@ -2,6 +2,8 @@ extends Node2D
 
 
 func _ready():
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), -10)
+	Engine.time_scale = 1
 	if !Values.user_values["load_on_start"]:
 		MusicManager._switch_track("res://Audio/Music/MassKyrie.mp3")
 
@@ -27,3 +29,8 @@ func _on_Fullscreen_pressed_ok():
 		OS.window_fullscreen = true
 	else:
 		OS.window_fullscreen = false
+
+
+func _on_Quit_pressed_ok():
+	if OS.get_name() != "HTML5":
+		get_tree().quit()

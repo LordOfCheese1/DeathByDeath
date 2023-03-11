@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Components/Managers/TextManager/TextManager.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Credits.gd" type="Script" id=2]
+[ext_resource path="res://Textures/Environment/Background.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=3]
+resource_name = "FadeIn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Transition:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.196078, 0.160784, 0.278431, 0 ), Color( 0.196078, 0.160784, 0.278431, 1 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "FadeOut"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Transition:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.196078, 0.160784, 0.278431, 0 ) ]
+}
+
+[node name="Credits" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="CreditsText" parent="." instance=ExtResource( 1 )]
+position = Vector2( 8, -4 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+margin_right = 320.0
+margin_bottom = 208.0
+color = Color( 1, 1, 0.921569, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+autoplay = "FadeOut"
+anims/FadeIn = SubResource( 3 )
+anims/FadeOut = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="Transition" type="Sprite" parent="CanvasLayer"]
+modulate = Color( 0.196078, 0.160784, 0.278431, 0 )
+position = Vector2( 160, 104 )
+texture = ExtResource( 3 )

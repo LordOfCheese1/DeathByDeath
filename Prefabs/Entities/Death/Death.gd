@@ -11,6 +11,7 @@ var scythe = load("res://Prefabs/Projectiles/ScytheProjectile/ScytheProjectile.t
 var shooting_cooldown = 200
 var shoot_pattern = 0
 var initial_pos = Vector2()
+var is_dead = false
 
 
 func _ready():
@@ -21,6 +22,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	if is_dead:
+		Engine.time_scale = 0.1
 	if $Visuals/Body.rotation_degrees > 0:
 		$Visuals/Body.rotation_degrees -= 2
 	elif $Visuals/Body.rotation_degrees < 0:
@@ -121,15 +124,17 @@ func _physics_process(delta):
 				elif shoot_pattern == 1:
 					shoot_pattern = 2
 					for i in 5:
-						shoot_half_circle()
-						yield(get_tree().create_timer(0.1, false), "timeout")
+						if !is_dead:
+							shoot_half_circle()
+							yield(get_tree().create_timer(0.1, false), "timeout")
 				elif shoot_pattern == 2:
 					shoot_pattern = 0
 					var adder = 0
 					for i in range(20):
-						shoot_star(adder)
-						adder += 14
-						yield(get_tree().create_timer(0.1, false), "timeout")
+						if !is_dead:
+							shoot_star(adder)
+							adder += 14
+							yield(get_tree().create_timer(0.1, false), "timeout")
 			
 	else: #spot player
 		if EnemyFunctions.distance(Values.player.position, position).x < 128 && EnemyFunctions.distance(Values.player.position, position).y < 90:
@@ -148,7 +153,8 @@ func _on_WallDetector_body_exited(body):
 
 
 func _on_Hitbox_on_hit():
-	$Visuals/Body.rotation_degrees = 20
+	if !is_dead:
+		$Visuals/Body.rotation_degrees = 20
 	randomize()
 	$Hit.pitch_scale = rand_range(0.8, 1.2)
 	$Hit.play(0.0)
@@ -216,11 +222,12 @@ func shoot_circle_twisted():
 
 func shoot_scythe_ray():
 	for i in 8:
-		var scythe_inst = scythe.instance()
-		scythe_inst.position = global_position
-		scythe_inst.rotation_degrees = $LookAtPlayer.rotation_degrees
-		get_parent().add_child(scythe_inst)
-		yield(get_tree().create_timer(0.3, false), "timeout")
+		if !is_dead:
+			var scythe_inst = scythe.instance()
+			scythe_inst.position = global_position
+			scythe_inst.rotation_degrees = $LookAtPlayer.rotation_degrees
+			get_parent().add_child(scythe_inst)
+			yield(get_tree().create_timer(0.3, false), "timeout")
 
 
 func shoot_half_circle():
@@ -240,5 +247,22 @@ func shoot_star(adder : float):
 
 
 func death():
+	is_dead = true
+	$Visuals/Body.rotation_degrees = -40
+	Values.user_values["beaten_game"] = true
 	velocity = Vector2(0, 0)
 	phase = 3
+	Engine.time_scale = 0.1
+	$CanvasLayer/AnimationPlayer.play("Death")
+	for i in 10:
+		MusicManager.pitch_scale -= 0.05
+		yield(get_tree().create_timer(0.01, false), "timeout")
+	
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "Death":
+		is_dead = false
+		Engine.time_scale = 1
+		MusicManager._switch_track("res://Audio/Music/Beethoven7th.mp3")
+		get_tree().change_scene("res://Scenes/Credits.tscn")

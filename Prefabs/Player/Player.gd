@@ -174,11 +174,18 @@ func _on_Hitbox_on_hit():
 	velocity.y = jump_velocity / 2
 	Engine.time_scale = 0.1
 	MusicManager.volume_db = -18
-	while Engine.time_scale < 1:
-		MusicManager.volume_db += 2
-		Engine.time_scale += 0.1
-		yield(get_tree().create_timer(0.05, true), "timeout")
+	if $HealthManager.health > 0:
+		while Engine.time_scale < 1:
+			MusicManager.volume_db += 2
+			Engine.time_scale += 0.1
+			yield(get_tree().create_timer(0.05, true), "timeout")
+	else:
+		MusicManager._switch_track("res://Audio/Music/MassKyrie.mp3")
+		$CanvasLayer/AnimationPlayer.play("FadeIn")
+		yield(get_tree().create_timer(0.2, false), "timeout")
+		get_tree().change_scene("res://Scenes/MainMenu.tscn")
 	is_hit = false
+
 
 func heal(amount):
 	$HealthManager.health += amount

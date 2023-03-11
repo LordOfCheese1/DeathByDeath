@@ -5,10 +5,13 @@ var velocity = Vector2()
 var spotted_player = false
 var speed = 20
 var is_dead = false
+var spike = load("res://Prefabs/Projectiles/FishSpike/FishSpike.tscn")
+var shoot_cooldown = 160
 
 
 func _ready():
 	yield(get_tree().create_timer(0.1, false), "timeout")
+	$Hitbox.add_to_group("enemy")
 	if Values.user_values["defeated_bosses"].has(name):
 		call_deferred("free")
 
@@ -25,6 +28,10 @@ func _physics_process(delta):
 	look_at(Values.player.position)
 	if spotted_player && !is_dead:
 		velocity += (transform.x * 80) / ($HealthManager.health + 20)
+		shoot_cooldown -= 1
+		if shoot_cooldown <= 0:
+			shoot_cooldown = 140 - (80 - $HealthManager.health)
+			shoot_circle()
 	else:
 		velocity = Vector2(0, 0)
 	if is_on_floor():
@@ -43,6 +50,23 @@ func _physics_process(delta):
 	
 	velocity.x = clamp(velocity.x, -speed, speed)
 	velocity.y = clamp(velocity.y, -speed, speed)
+
+
+func shoot_at_player():
+	var spike_inst = spike.instance()
+	spike_inst.position = global_position
+	spike_inst.rotation_degrees = rotation_degrees
+	get_parent().add_child(spike_inst)
+
+
+func shoot_circle():
+	var value = -16
+	for i in 10.25:
+		value += 1
+		var spike_inst = spike.instance()
+		spike_inst.position = global_position
+		spike_inst.rotation_degrees = (value * 2 + (i * 32)) + rotation_degrees
+		get_parent().add_child(spike_inst)
 
 
 func _on_Hitbox_on_hit():

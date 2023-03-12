@@ -10,4 +10,7 @@ func _ready():
 	collidershape.extents = water_size / 2
 	$WaterTile.scale = water_size / 16
 	$CollisionShape2D.shape = collidershape
-	$WaterTile.material.set_shader_param("tile", water_size / 16)
+	if Values.lowe_specs:
+		$WaterTile.material = null
+	else:
+		$WaterTile.material.set_shader_param("tile", water_size / 16)

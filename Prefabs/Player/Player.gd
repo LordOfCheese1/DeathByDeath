@@ -20,9 +20,16 @@ var jumped = false
 var double_jumped = false
 var in_water = false
 var footstep_counter = 16
+export var light : NodePath
 
 
 func _ready():
+	if Values.lowe_specs:
+		if light != "":
+			get_node(light).call_deferred("free")
+		
+		$ParticleSpawner.wait_time = 0.1
+		$ParticleSpawner/Timer.wait_time = $ParticleSpawner.wait_time
 	$ParticleSpawner.spawn_at = get_parent()
 	$HealthManager.max_health = Values.user_values["player_max_health"]
 	Values.player = self

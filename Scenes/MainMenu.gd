@@ -6,6 +6,9 @@ func _ready():
 	Engine.time_scale = 1
 	if !Values.user_values["load_on_start"]:
 		MusicManager._switch_track("res://Audio/Music/MassKyrie.mp3")
+	if Values.lowe_specs:
+		$CanvasModulate.call_deferred("free")
+		$Sword/Light2D.call_deferred("free")
 
 
 func _on_Play_pressed_ok():

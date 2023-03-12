@@ -11,6 +11,9 @@ var sword_projectile = load("res://Prefabs/Projectiles/SwordProjectile/SwordProj
 
 
 func _ready():
+	if Values.lowe_specs:
+		$Pivot/AnimPivot/Graphics/ParticleSpawner.wait_time = 0.05
+		$Pivot/AnimPivot/Graphics/ParticleSpawner/Timer.wait_time = $Pivot/AnimPivot/Graphics/ParticleSpawner.wait_time
 	$Pivot/AnimPivot/Graphics/ParticleSpawner.spawn_at = get_parent().get_parent()
 
 

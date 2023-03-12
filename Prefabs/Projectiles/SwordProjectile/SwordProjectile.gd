@@ -6,6 +6,9 @@ var is_dead = false
 
 
 func _ready():
+	if Values.lowe_specs:
+		$ParticleSpawner.wait_time = 0.1
+		$ParticleSpawner/Timer.wait_time = $ParticleSpawner.wait_time
 	look_at(get_global_mouse_position())
 	$ParticleSpawner.spawn_at = get_parent()
 

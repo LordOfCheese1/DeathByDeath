@@ -5,6 +5,7 @@ var save_file = File.new()
 var player
 var is_loading_in = false
 var player_look_dir = 0
+var lowe_specs = false
 
 
 func _ready():

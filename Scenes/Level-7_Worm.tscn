@@ -67,6 +67,7 @@ position = Vector2( 1216, 94 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 8, -284 )
 canvaslayer = NodePath("../Interface")
+light = NodePath("Light2D")
 
 [node name="Light2D" type="Light2D" parent="Player"]
 texture = ExtResource( 6 )

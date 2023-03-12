@@ -20,9 +20,9 @@ func _physics_process(delta):
 	$Sprite.rotation_degrees = velocity.x / 2
 	move_and_slide(velocity)
 	if spotted_player:
-		velocity += (Values.player.position - position) / 4
-		velocity.x = clamp(velocity.x, -200, 200)
-		velocity.y = clamp(velocity.y, -200, 200)
+		velocity += (Values.player.position - position) / 6
+		velocity.x = clamp(velocity.x, -150, 150)
+		velocity.y = clamp(velocity.y, -150, 150)
 
 
 func _on_Hitbox_on_hit():

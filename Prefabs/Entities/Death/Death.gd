@@ -137,7 +137,7 @@ func _physics_process(delta):
 							yield(get_tree().create_timer(0.1, false), "timeout")
 			
 	else: #spot player
-		if EnemyFunctions.distance(Values.player.position, position).x < 128 && EnemyFunctions.distance(Values.player.position, position).y < 90:
+		if EnemyFunctions.distance(Values.player.position, position).x < 176 && EnemyFunctions.distance(Values.player.position, position).y < 90:
 			spotted_player = true
 			MusicManager._switch_track("res://Audio/Music/Kyrie.mp3")
 
@@ -153,6 +153,10 @@ func _on_WallDetector_body_exited(body):
 
 
 func _on_Hitbox_on_hit():
+	if !spotted_player:
+		spotted_player = true
+		Values.player.position = Vector2(60, -328)
+		MusicManager._switch_track("res://Audio/Music/Kyrie.mp3")
 	if !is_dead:
 		$Visuals/Body.rotation_degrees = 20
 	randomize()

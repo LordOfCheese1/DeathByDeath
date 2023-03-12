@@ -70,6 +70,9 @@ func shoot_circle():
 
 
 func _on_Hitbox_on_hit():
+	if !spotted_player:
+		spotted_player = true
+		MusicManager._switch_track("res://Audio/Music/HungarianDance5.mp3")
 	if !is_dead:
 		$AnimationPlayer.play("Hit")
 	velocity = transform.x * -15

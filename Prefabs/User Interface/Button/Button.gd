@@ -24,3 +24,4 @@ func _physics_process(delta):
 	
 	if mouse_is_on == true && Input.is_action_just_pressed("confirm"):
 		emit_signal("pressed_ok")
+		$Pressed.play()
